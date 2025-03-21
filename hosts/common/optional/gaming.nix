@@ -56,10 +56,10 @@
           gpu_device = 1; # The DRM device number on the system (usually 0), ie. the number in /sys/class/drm/card0/
           amd_performance_level = "high";
         };
-        custom = {
-          start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
-          end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
-        };
+        # custom = {
+        #   start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
+        #   end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
+        # };
       };
     };
   };
