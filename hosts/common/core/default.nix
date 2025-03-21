@@ -37,13 +37,49 @@ in
   networking.hostName = config.hostSpec.hostName;
 
   # System-wide packages, in case we log in as root
-  environment.systemPackages = [ pkgs.openssh ];
+  environment.systemPackages = [ pkgs.openssh pkgs.vim];
 
   # Force home-manager to use global packages
   home-manager.useGlobalPkgs = true;
   # If there is a conflict file that is backed up, use this extension
   home-manager.backupFileExtension = "bk";
   # home-manager.useUserPackages = true;
+
+
+  #
+  # ========== Network Configurations ==========
+  #
+  networking = {
+    # Enable the NetworkManager service
+    networkmanager.enable = true;
+
+    # Adds firewall rules to allow WireGuard traffic
+    firewall = {
+      logReversePathDrops = true;
+      extraCommands = ''
+        ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN
+        ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN
+      '';
+      extraStopCommands = ''
+        ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN || true
+        ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN || true
+      '';
+    };
+
+    # Use Google's BBR congestion control algorithm
+    boot = {
+      kernelModules = [ "tcp_bbr" ];
+      kernel.sysctl = {
+        "net.ipv4.tcp_congestion_control" = "bbr";
+        "net.core.default_qdisc" = "fq";
+
+        "net.core.wmem_max" = 1073741824; # 1 GiB
+        "net.core.rmem_max" = 1073741824; # 1 GiB
+        "net.ipv4.tcp_rmem" = "4096 87380 1073741824"; # 1 GiB max
+        "net.ipv4.tcp_wmem" = "4096 87380 1073741824"; # 1 GiB max
+      };
+    };
+  };
 
   #
   # ========== Overlays ==========
@@ -88,15 +124,5 @@ in
         "flakes"
       ];
     };
-  };
-
-  #
-  # ========== Basic Shell Enablement ==========
-  #
-  # On darwin it's important this is outside home-manager
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    promptInit = "source ''${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
   };
 }
