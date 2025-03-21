@@ -28,7 +28,6 @@
             inherit
               inputs
               outputs
-              isDarwin
               ;
 
             # ========== Extend lib with lib.custom ==========
