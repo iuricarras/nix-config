@@ -32,6 +32,10 @@ in
           "networkmanager"
           "scanner" # for print/scan"
           "lp" # for print/scan"
+          "ubridge" # for gns3
+          "kvm" # for qemu
+          "libvirtd" # for qemu
+          "wireshark" # for wireshark
         ])
       ];
     };
