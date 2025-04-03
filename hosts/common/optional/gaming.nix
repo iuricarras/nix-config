@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, nurpkgs, ... }:
 {
   hardware.xone.enable = true; # xbox controller
 
@@ -63,4 +63,8 @@
       };
     };
   };
+
+  environment.systemPackages = with pkgs; [
+    nur.repos.iuricarras.truckersmp-cli
+  ];
 }

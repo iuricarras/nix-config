@@ -55,24 +55,24 @@
     # ========= Host Configurations =========
     #
     # Building configurations is available through `just rebuild` or `nixos-rebuild --flake .#hostname` or `nh os`
-    nixosConfigurations = mkHostConfigs (readHosts "nixos") false;
+    nixosConfigurations = mkHostConfigs (readHosts "nixos");
 
     #
     # ========= Packages =========
     #
     # Add custom packages to be shared or upstreamed.
-    packages = forAllSystems (
-      system: let
-        pkgs = import nixpkgs {
-          inherit system;
-          overlays = [self.overlays.default];
-        };
-      in
-        lib.packagesFromDirectoryRecursive {
-          callPackage = lib.callPackageWith pkgs;
-          directory = ./pkgs/common;
-        }
-    );
+    # packages = forAllSystems (
+    #   system: let
+    #     pkgs = import nixpkgs {
+    #       inherit system;
+    #       overlays = [self.overlays.default];
+    #     };
+    #   in
+    #     lib.packagesFromDirectoryRecursive {
+    #       callPackage = lib.callPackageWith pkgs;
+    #       directory = ./pkgs/common;
+    #     }
+    # );
 
     #
     # ========= Formatting =========
@@ -96,6 +96,7 @@
 
     nurpkgs = {
       url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hardware.url = "github:nixos/nixos-hardware";
@@ -133,7 +134,7 @@
     # Authenticate via ssh and use shallow clone
     nix-secrets = {
       url = "git+ssh://git@github.com/iuricarras/nix_private.git?ref=main&shallow=1";
-      inputs = {};
+      flake = false;
     };
 
   };

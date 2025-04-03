@@ -5,11 +5,9 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   platformModules = "nixosModules";
-in
-{
+in {
   imports = lib.flatten [
     inputs.home-manager.${platformModules}.home-manager
     inputs.sops-nix.${platformModules}.sops
@@ -23,7 +21,6 @@ in
       "hosts/common/core/ssh.nix"
       #"hosts/common/core/services" #not used yet
       "hosts/common/users/primary"
-      "hosts/common/users/primary/nixos.nix"
     ])
   ];
 
@@ -37,14 +34,13 @@ in
   networking.hostName = config.hostSpec.hostName;
 
   # System-wide packages, in case we log in as root
-  environment.systemPackages = [ pkgs.openssh pkgs.vim];
+  environment.systemPackages = [pkgs.openssh pkgs.vim];
 
   # Force home-manager to use global packages
   home-manager.useGlobalPkgs = true;
   # If there is a conflict file that is backed up, use this extension
   home-manager.backupFileExtension = "bk";
   # home-manager.useUserPackages = true;
-
 
   #
   # ========== Network Configurations ==========
@@ -65,19 +61,19 @@ in
         ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN || true
       '';
     };
+  };
+  
+  # Use Google's BBR congestion control algorithm
+  boot = {
+    kernelModules = ["tcp_bbr"];
+    kernel.sysctl = {
+      "net.ipv4.tcp_congestion_control" = "bbr";
+      "net.core.default_qdisc" = "fq";
 
-    # Use Google's BBR congestion control algorithm
-    boot = {
-      kernelModules = [ "tcp_bbr" ];
-      kernel.sysctl = {
-        "net.ipv4.tcp_congestion_control" = "bbr";
-        "net.core.default_qdisc" = "fq";
-
-        "net.core.wmem_max" = 1073741824; # 1 GiB
-        "net.core.rmem_max" = 1073741824; # 1 GiB
-        "net.ipv4.tcp_rmem" = "4096 87380 1073741824"; # 1 GiB max
-        "net.ipv4.tcp_wmem" = "4096 87380 1073741824"; # 1 GiB max
-      };
+      "net.core.wmem_max" = 1073741824; # 1 GiB
+      "net.core.rmem_max" = 1073741824; # 1 GiB
+      "net.ipv4.tcp_rmem" = "4096 87380 1073741824"; # 1 GiB max
+      "net.ipv4.tcp_wmem" = "4096 87380 1073741824"; # 1 GiB max
     };
   };
 
@@ -99,7 +95,7 @@ in
   nix = {
     # This will add each flake input as a registry
     # To make nix3 commands consistent with your flake
-    registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
+    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
 
     # This will add your inputs to the system's legacy channels
     # Making legacy nix commands consistent as well, awesome!
@@ -112,7 +108,7 @@ in
       min-free = 128000000; # 128MB
       max-free = 1000000000; # 1GB
 
-      trusted-users = [ "@wheel" ];
+      trusted-users = ["@wheel"];
       # Deduplicate and optimize nix store
       auto-optimise-store = true;
       warn-dirty = false;

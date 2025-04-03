@@ -12,12 +12,12 @@
   sopsHashedPasswordFile = lib.optionalString (!config.hostSpec.isMinimal) config.sops.secrets."passwords/${hostSpec.username}".path;
 in
   {
-    users.mutableUsers = false;
+    #users.mutableUsers = false;
     users.users.${hostSpec.username} = {
       name = hostSpec.username;
       home = "/home/${hostSpec.username}";
       isNormalUser = true;
-      hashedPasswordFile = sopsHashedPasswordFile; # Blank if sops is not working.
+      #hashedPasswordFile = sopsHashedPasswordFile; # Blank if sops is not working.
       # These get placed into /etc/ssh/authorized_keys.d/<name> on nixos
       openssh.authorizedKeys.keys = lib.lists.forEach pubKeys (key: builtins.readFile key);
 

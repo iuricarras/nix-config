@@ -1,12 +1,13 @@
 {
   inputs,
   lib,
+  pkgs,
   ...
 }:
 let
 in
 {
-  imports = [
+  imports = lib.flatten [
     #
     # ========== Hardware ==========
     #
@@ -18,6 +19,7 @@ in
     #inputs.hardware.nixosModules.common-gpu-intel
     inputs.hardware.nixosModules.common-pc-ssd
 
+    inputs.nurpkgs.modules.nixos.default
     #
     # ========== Disk Layout ==========
     #
@@ -33,18 +35,25 @@ in
       #
       "hosts/common/core"
 
+
+      #
+      #
+      #
+      "hosts/common/disks/hdd.nix"
+      "hosts/common/disks/home.nix"
+
       #
       # ========== Optional Configs ==========
       #
-      "hosts/optional/bootloader/grub.nix"
-      "hosts/optional/desktopEnvironment/gnome.nix"
-      "hosts/optional/virtualization/virtualbox.nix"
-      "hosts/optional/virtualization/libvirt.nix"
-      "hosts/optional/virtualization/vmware.nix"
-      "hosts/optional/audio.nix"
-      "hosts/optional/gaming.nix"
-      "hosts/optional/plymouth.nix"
-      "hosts/optional/swap.nix"
+      "hosts/common/optional/bootloader/grub.nix"
+      "hosts/common/optional/desktopEnvironment/gnome.nix"
+      "hosts/common/optional/virtualization/virtualbox.nix"
+      "hosts/common/optional/virtualization/libvirt.nix"
+      "hosts/common/optional/virtualization/vmware.nix"
+      "hosts/common/optional/audio.nix"
+      "hosts/common/optional/gaming.nix"
+      "hosts/common/optional/plymouth.nix"
+      "hosts/common/optional/swap.nix"
     ])
   ];
 
@@ -64,6 +73,9 @@ in
   boot.initrd = {
     systemd.enable = true;
   };
+
+  boot.kernelPackages = pkgs.linuxPackages_zen;
+
 
   # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.11";

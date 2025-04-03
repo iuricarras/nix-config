@@ -4,18 +4,12 @@
   pkgs,
   hostSpec,
   ...
-}: let
-  platform =
-    if hostSpec.isDarwin
-    then "darwin"
-    else "nixos";
-in {
+}: {
   imports = lib.flatten [
     (map lib.custom.relativeToRoot [
       "modules/common/host-spec.nix"
       "modules/home"
     ])
-    ./${platform}.nix
     ./bash.nix
     ./bat.nix
     #./ssh.nix
@@ -78,6 +72,7 @@ in {
       nil
       hugo
       findutils # find
+      firefox
       neofetch # fancier system info than pfetch
       p7zip # compression & encryption
       steam-run # for running non-NixOS-packaged binaries on Nix

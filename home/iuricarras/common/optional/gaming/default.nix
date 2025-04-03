@@ -21,7 +21,6 @@
       "--adaptive-sync"
       "--expose-wayland"
       "--steam"
-      "--hdr-enabled"
     ];
     steam = lib.concatStringsSep " " [
       "steam"
@@ -57,10 +56,6 @@ in {
         piper
         goverlay
         
-        ;
-      inherit
-        (inputs.nur.repos.iuricarras)
-        truckersmp-cli
         ;
     };
 }
