@@ -20,7 +20,6 @@
       "--prefer-output ${monitor.name}"
       "--adaptive-sync"
       "--expose-wayland"
-      "--steam"
     ];
     steam = lib.concatStringsSep " " [
       "steam"

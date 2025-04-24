@@ -5,6 +5,7 @@
   programs = {
     steam = {
       enable = true;
+      gamescopeSession.enable = true;
       protontricks = {
         enable = true;
         package = pkgs.protontricks;
@@ -39,7 +40,7 @@
     #gamescope launch args set dynamically in home/<user>/common/optional/gaming
     gamescope = {
       enable = true;
-      capSysNice = true;
+      #capSysNice = true;
     };
     # to run steam games in game mode, add the following to the game's properties from within steam
     # gamemoderun %command%

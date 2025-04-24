@@ -47,6 +47,7 @@ in
       #
       "hosts/common/optional/bootloader/grub.nix"
       "hosts/common/optional/desktopEnvironment/gnome.nix"
+      "hosts/common/optional/graphics/amd.nix"
       "hosts/common/optional/virtualization/virtualbox.nix"
       "hosts/common/optional/virtualization/libvirt.nix"
       "hosts/common/optional/virtualization/vmware.nix"
@@ -54,6 +55,7 @@ in
       "hosts/common/optional/gaming.nix"
       "hosts/common/optional/plymouth.nix"
       "hosts/common/optional/swap.nix"
+      "hosts/common/optional/droidcam.nix"
     ])
   ];
 
