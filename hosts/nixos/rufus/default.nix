@@ -4,17 +4,15 @@
   ...
 }: let
 in {
-  imports = [
+  imports = lib.flatten [
     #
     # ========== Hardware ==========
     #
     ./hardware-configuration.nix
     inputs.hardware.nixosModules.common-cpu-intel
-    inputs.hardware.nixosModules.common-gpu-nvidia-prime
-    inputs.hardware.nixosModules.common-gpu-nvidia-turing
+    inputs.hardware.nixosModules.common-gpu-nvidia
     inputs.hardware.nixosModules.common-pc-laptop
     inputs.hardware.nixosModules.common-pc-ssd
-    inputs.hardware.nixosModules.common-pc-hdd
 
     inputs.nurpkgs.modules.nixos.default
     #
@@ -31,7 +29,6 @@ in {
       # ========== Required Configs ==========
       #
       "hosts/common/core"
-      "hosts/common/disks/hdd.nix"
       "hosts/common/disks/home.nix"
       #
       # ========== Non-Primary Users to Create ==========
@@ -72,6 +69,7 @@ in {
   # Nvidia GPU
   hardware = {
     nvidia = {
+      open = true;
       modesetting.enable = lib.mkDefault true;
       powerManagement.enable = lib.mkDefault true;
 
