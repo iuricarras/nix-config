@@ -27,7 +27,7 @@
       "$HOME/.local/bin"
     ];
     sessionVariables = {
-      FLAKE = "$HOME/Github/nix-config";
+      NH_FLAKE = "$HOME/Github/nix-config";
       MANPAGER = "batman"; # see ./cli/bat.nix
     };
     preferXdgDirectories = true; # whether to make programs use XDG directories whenever supported
