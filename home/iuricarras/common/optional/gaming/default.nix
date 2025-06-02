@@ -9,7 +9,7 @@
 }: let
   monitor = lib.head (lib.filter (m: m.primary) config.monitors);
 
-  prismlauncher = pkgs.prismlauncher.override{jdks = [ pkgs.jdk8 pkgs.jdk17 pkgs.jdk21]; };
+  prismlauncher = pkgs.prismlauncher.override {jdks = [ pkgs.jdk8 pkgs.jdk17 pkgs.jdk21]; };
 
   steam-session = let
     gamescope = lib.concatStringsSep " " [
@@ -54,7 +54,7 @@ in {
         mangohud
         piper
         goverlay
-        
+        heroic
         ;
     };
 }

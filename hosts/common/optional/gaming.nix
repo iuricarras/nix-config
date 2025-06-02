@@ -32,6 +32,7 @@
               libkrb5
               keyutils
               gperftools
+              yaru-theme
               ;
           });
       };

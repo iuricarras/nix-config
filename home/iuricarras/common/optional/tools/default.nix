@@ -6,6 +6,7 @@
       postman
       winbox
       github-desktop
+      vlc
       ;
       inherit (pkgs.obs-studio-plugins)
       obs-vaapi
