@@ -38,7 +38,7 @@ in {
       # ========== Optional Configs ==========
       #
       "hosts/common/optional/bootloader/grub.nix"
-      "hosts/common/optional/desktopEnvironment/gnome.nix"
+      "hosts/common/optional/desktopEnvironment"
       "hosts/common/optional/virtualization/virtualbox.nix"
       "hosts/common/optional/virtualization/libvirt.nix"
       "hosts/common/optional/virtualization/vmware.nix"
@@ -60,12 +60,13 @@ in {
 
   hostSpec = {
     hostName = "rufus";
+    isDEGnome = true; # enable GNOME desktop environment and various definitions on the configuration
   };
 
   networking = {
     networkmanager.enable = true;
     enableIPv6 = false;
-    firewall.allowedTCPPorts = [ 5000 ];
+    firewall.allowedTCPPorts = [5000];
   };
 
   boot.initrd = {

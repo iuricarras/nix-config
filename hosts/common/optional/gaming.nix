@@ -1,7 +1,12 @@
-{ pkgs, nurpkgs, ... }:
 {
+  lib,
+  pkgs,
+  config,
+  nurpkgs,
+  ...
+}: {
   hardware.xone.enable = true; # xbox controller
-
+  
   programs = {
     steam = {
       enable = true;
@@ -11,32 +16,30 @@
         package = pkgs.protontricks;
       };
       package = pkgs.steam.override {
-        extraPkgs =
-          pkgs:
-          (builtins.attrValues {
-            inherit (pkgs.xorg)
-              libXcursor
-              libXi
-              libXinerama
-              libXScrnSaver
-              ;
-
-            inherit (pkgs.stdenv.cc.cc)
-              lib
-              ;
-
-            inherit (pkgs)
+        extraPkgs = pkgs: let
+          xorgPkgs = with pkgs.xorg; [
+            libXcursor
+            libXi
+            libXinerama
+            libXScrnSaver
+          ];
+          stdenvPkgs = [
+            pkgs.stdenv.cc.cc.lib
+          ];
+          otherPkgs = with pkgs;
+            [
               libpng
               libpulseaudio
               libvorbis
               libkrb5
               keyutils
               gperftools
-              yaru-theme
-              ;
-          });
+            ]
+            ++ lib.optionals config.hostSpec.isDEGnome [yaru-theme];
+        in
+          xorgPkgs ++ stdenvPkgs ++ otherPkgs;
       };
-      extraCompatPackages = [ pkgs.unstable.proton-ge-bin ];
+      extraCompatPackages = [pkgs.unstable.proton-ge-bin];
     };
     #gamescope launch args set dynamically in home/<user>/common/optional/gaming
     gamescope = {

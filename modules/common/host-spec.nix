@@ -1,7 +1,6 @@
 # Specifications For Differentiating Hosts
 {
   config,
-  pkgs,
   lib,
   ...
 }:
@@ -37,6 +36,11 @@
       type = lib.types.bool;
       default = false;
       description = "Used to indicate a host that uses work resources";
+    };
+    isDEGnome = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Used to indicate a host that uses the GNOME desktop environment";
     };
   };
 }
