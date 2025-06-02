@@ -86,6 +86,7 @@
       xarchiver # gui archive manager
       vscode
       git
+      neovim
       ;
   };
 

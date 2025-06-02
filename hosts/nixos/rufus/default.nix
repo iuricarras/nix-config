@@ -46,6 +46,11 @@ in {
       "hosts/common/optional/gaming.nix"
       "hosts/common/optional/plymouth.nix"
       "hosts/common/optional/swap.nix"
+
+      #
+      # ========== One Time Configs ==========
+      #
+      "hosts/common/optional/virtualization/docker.nix"
     ])
   ];
 
@@ -60,6 +65,7 @@ in {
   networking = {
     networkmanager.enable = true;
     enableIPv6 = false;
+    firewall.allowedTCPPorts = [ 5000 ];
   };
 
   boot.initrd = {

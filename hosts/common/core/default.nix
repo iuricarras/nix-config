@@ -64,18 +64,7 @@ in {
   };
   
   # Use Google's BBR congestion control algorithm
-  boot = {
-    kernelModules = ["tcp_bbr"];
-    kernel.sysctl = {
-      "net.ipv4.tcp_congestion_control" = "bbr";
-      "net.core.default_qdisc" = "fq";
 
-      "net.core.wmem_max" = 1073741824; # 1 GiB
-      "net.core.rmem_max" = 1073741824; # 1 GiB
-      "net.ipv4.tcp_rmem" = "4096 87380 1073741824"; # 1 GiB max
-      "net.ipv4.tcp_wmem" = "4096 87380 1073741824"; # 1 GiB max
-    };
-  };
 
   #
   # ========== Overlays ==========
