@@ -2,7 +2,6 @@
   lib,
   pkgs,
   config,
-  nurpkgs,
   ...
 }: {
   hardware.xone.enable = true; # xbox controller
