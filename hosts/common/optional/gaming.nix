@@ -34,7 +34,8 @@
               keyutils
               gperftools
             ]
-            ++ lib.optionals config.hostSpec.isDEGnome [yaru-theme];
+            ++ lib.optionals config.hostSpec.isDEGnome [yaru-theme] 
+            ++ lib.optionals config.hostSpec.isDEPlasma [ kdePackages.breeze ];
         in
           xorgPkgs ++ stdenvPkgs ++ otherPkgs;
       };

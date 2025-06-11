@@ -7,6 +7,7 @@
       winbox
       github-desktop
       vlc
+      shortwave # Radio Player
       ;
       inherit (pkgs.obs-studio-plugins)
       obs-vaapi
