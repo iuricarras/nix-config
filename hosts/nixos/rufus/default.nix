@@ -65,7 +65,6 @@ in {
 
   networking = {
     networkmanager.enable = true;
-    enableIPv6 = false;
     firewall.allowedTCPPorts = [5000];
   };
 
