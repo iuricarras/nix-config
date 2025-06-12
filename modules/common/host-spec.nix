@@ -42,5 +42,10 @@
       default = false;
       description = "Used to indicate a host that uses the GNOME desktop environment";
     };
+    isDEPlasma = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Used to indicate a host that uses the KDE Plasma desktop environment";
+    };
   };
 }
