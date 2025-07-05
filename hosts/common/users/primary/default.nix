@@ -36,6 +36,9 @@ in
           "kvm" # for qemu
           "libvirtd" # for qemu
           "wireshark" # for wireshark
+
+          #Server
+          "streaming" # for arr services
         ])
       ];
     };
