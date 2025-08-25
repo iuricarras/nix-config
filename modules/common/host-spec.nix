@@ -47,5 +47,10 @@
       default = false;
       description = "Used to indicate a host that uses the KDE Plasma desktop environment";
     };
+    isDECinnamon = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Used to indicate a host that uses the Cinnamon desktop environment";
+    };
   };
 }

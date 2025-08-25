@@ -35,7 +35,8 @@
               gperftools
             ]
             ++ lib.optionals config.hostSpec.isDEGnome [yaru-theme] 
-            ++ lib.optionals config.hostSpec.isDEPlasma [ kdePackages.breeze ];
+            ++ lib.optionals config.hostSpec.isDEPlasma [ kdePackages.breeze ]
+            ++ lib.optionals config.hostSpec.isDECinnamon [ bibata-cursors];
         in
           xorgPkgs ++ stdenvPkgs ++ otherPkgs;
       };

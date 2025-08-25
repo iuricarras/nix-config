@@ -1,6 +1,7 @@
 {
   inputs,
   lib,
+  pkgs,
   ...
 }: let
 in {
@@ -30,6 +31,7 @@ in {
       #
       "hosts/common/core"
       "hosts/common/disks/home.nix"
+      "hosts/common/disks/hdd.nix"
       #
       # ========== Non-Primary Users to Create ==========
       #
@@ -39,9 +41,10 @@ in {
       #
       "hosts/common/optional/bootloader/grub.nix"
       "hosts/common/optional/desktopEnvironment"
-      "hosts/common/optional/virtualization/virtualbox.nix"
-      "hosts/common/optional/virtualization/libvirt.nix"
-      "hosts/common/optional/virtualization/vmware.nix"
+      #"hosts/common/optional/virtualization/virtualbox.nix"
+      #"hosts/common/optional/virtualization/libvirt.nix"
+      #"hosts/common/optional/virtualization/vmware.nix"
+      "hosts/common/optional/virtualization/waydroid.nix"
       "hosts/common/optional/audio.nix"
       "hosts/common/optional/gaming.nix"
       "hosts/common/optional/plymouth.nix"
@@ -50,7 +53,7 @@ in {
       #
       # ========== One Time Configs ==========
       #
-      "hosts/common/optional/virtualization/docker.nix"
+      #"hosts/common/optional/virtualization/docker.nix"
     ])
   ];
 
@@ -60,12 +63,12 @@ in {
 
   hostSpec = {
     hostName = "rufus";
-    isDEGnome = true; # enable GNOME desktop environment and various definitions on the configuration
+    isDEPlasma = true; # enable Cinnamon desktop environment and various definitions on the configuration
   };
 
   networking = {
     networkmanager.enable = true;
-    firewall.allowedTCPPorts = [5000];
+
   };
 
   boot.initrd = {
@@ -83,6 +86,12 @@ in {
         intelBusId = "PCI:0:2:0";
         nvidiaBusId = "PCI:1:0:0";
       };
+    };
+    graphics = {
+      enable = true;
+       extraPackages = [
+        pkgs.libGL
+      ];
     };
   };
 
