@@ -1,16 +1,13 @@
 # hosts level sops. see home/[user]/common/optional/sops.nix for home/user level
-
 {
   pkgs,
   lib,
   inputs,
   config,
   ...
-}:
-let
+}: let
   sopsFolder = builtins.toString inputs.nix-secrets + "/sops";
-in
-{
+in {
   #the import for inputs.sops-nix.nixosModules.sops is handled in hosts/common/core/default.nix so that it can be dynamically input according to the platform
 
   sops = {
@@ -19,7 +16,7 @@ in
     validateSopsFiles = false;
     age = {
       # automatically import host SSH keys as age keys
-      sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
     };
     # secrets will be output to /run/secrets
     # e.g. /run/secrets/msmtp-password
@@ -50,25 +47,29 @@ in
     }
     # only reference discord api and cloudflare api if host is a server
     (lib.mkIf config.hostSpec.isServer {
-      "passwords/borg" = {
+      "discord-token" = {
+        owner = "discord";
+        group = "discord";
+      };
+      "homarr-api-token" = {
         owner = "root";
-        group = if pkgs.stdenv.isLinux then "root" else "wheel";
-        mode = "0600";
-        path = "/etc/borg/passphrase";
+        group = "root";
+      };
+      "cloudflare-api" = {
+        owner = "root";
+        group = "root";
       };
     })
   ];
   # The containing folders are created as root and if this is the first ~/.config/ entry,
   # the ownership is busted and home-manager can't target because it can't write into .config...
   # FIXME(sops): We might not need this depending on how https://github.com/Mic92/sops-nix/issues/381 is fixed
-  system.activationScripts.sopsSetAgeKeyOwnership =
-    let
-      ageFolder = "${config.hostSpec.home}/.config/sops/age";
-      user = config.users.users.${config.hostSpec.username}.name;
-      group = config.users.users.${config.hostSpec.username}.group;
-    in
-    ''
-      mkdir -p ${ageFolder} || true
-      chown -R ${user}:${group} ${config.hostSpec.home}/.config
-    '';
+  system.activationScripts.sopsSetAgeKeyOwnership = let
+    ageFolder = "${config.hostSpec.home}/.config/sops/age";
+    user = config.users.users.${config.hostSpec.username}.name;
+    group = config.users.users.${config.hostSpec.username}.group;
+  in ''
+    mkdir -p ${ageFolder} || true
+    chown -R ${user}:${group} ${config.hostSpec.home}/.config
+  '';
 }

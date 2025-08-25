@@ -36,6 +36,9 @@ in
           "kvm" # for qemu
           "libvirtd" # for qemu
           "wireshark" # for wireshark
+
+          #Server
+          "streaming" # for arr services
         ])
       ];
     };
@@ -61,7 +64,7 @@ in
         hostSpec = config.hostSpec;
       };
       users.${hostSpec.username}.imports = lib.flatten (
-        lib.optional (!hostSpec.isMinimal) [
+        lib.optional (!hostSpec.isServer) [
           (
             {config, ...}:
               import (lib.custom.relativeToRoot "home/${hostSpec.username}/${hostSpec.hostName}.nix") {
