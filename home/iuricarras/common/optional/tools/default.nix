@@ -3,7 +3,7 @@
     inherit
       (pkgs)
       obs-studio
-      postman
+      #postman
       winbox
       github-desktop
       vlc
