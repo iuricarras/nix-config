@@ -14,7 +14,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    services.xserver = {
+    services = {
       desktopManager.gnome.enable = true;
       displayManager.gdm.enable = true;
       # Uncomment and adjust if you want to use extra GSettings overrides:

@@ -65,7 +65,7 @@ in
 
   hostSpec = {
     hostName = "yoggi";
-    isDEGnome = true; # enable GNOME desktop environment and various definitions on the system
+    isDEGnome = true; # enable Gnome desktop environment and various definitions on the system
   };
 
   networking = {

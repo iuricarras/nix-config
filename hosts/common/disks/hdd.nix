@@ -7,7 +7,7 @@
   };
 
   fileSystems."/home/iuricarras/Games/HDD" = {
-    device = "/dev/disk/by-label/HDDLINUX";
+    device = "/dev/disk/by-label/GAMES";
     fsType = "ext4";
     options = ["nofail" "x-systemd.device-timeout=5"];
   };
