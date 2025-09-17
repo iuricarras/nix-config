@@ -46,6 +46,7 @@ in {
       "hosts/common/optional/virtualization/libvirt.nix"
       "hosts/common/optional/virtualization/vmware.nix"
       "hosts/common/optional/virtualization/waydroid.nix"
+      "hosts/common/optional/virtualization/proxmox.nix"
       "hosts/common/optional/audio.nix"
       "hosts/common/optional/gaming.nix"
       "hosts/common/optional/plymouth.nix"
