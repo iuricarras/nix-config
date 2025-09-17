@@ -137,5 +137,9 @@
       flake = false;
     };
 
+
+    #nixos-proxmox
+    proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
+
   };
 }

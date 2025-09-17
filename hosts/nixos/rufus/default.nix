@@ -16,6 +16,7 @@ in {
     inputs.hardware.nixosModules.common-pc-ssd
 
     inputs.nurpkgs.modules.nixos.default
+    inputs.proxmox-nixos.nixosModules.proxmox-ve
     #
     # ========== Disk Layout ==========
     #
@@ -41,9 +42,9 @@ in {
       #
       "hosts/common/optional/bootloader/grub.nix"
       "hosts/common/optional/desktopEnvironment"
-      #"hosts/common/optional/virtualization/virtualbox.nix"
-      #"hosts/common/optional/virtualization/libvirt.nix"
-      #"hosts/common/optional/virtualization/vmware.nix"
+      "hosts/common/optional/virtualization/virtualbox.nix"
+      "hosts/common/optional/virtualization/libvirt.nix"
+      "hosts/common/optional/virtualization/vmware.nix"
       "hosts/common/optional/virtualization/waydroid.nix"
       "hosts/common/optional/audio.nix"
       "hosts/common/optional/gaming.nix"
@@ -68,7 +69,6 @@ in {
 
   networking = {
     networkmanager.enable = true;
-
   };
 
   boot.initrd = {
@@ -81,6 +81,7 @@ in {
       open = true;
       modesetting.enable = lib.mkDefault true;
       powerManagement.enable = lib.mkDefault true;
+      powerManagement.finegrained = true;
 
       prime = {
         intelBusId = "PCI:0:2:0";
@@ -89,7 +90,7 @@ in {
     };
     graphics = {
       enable = true;
-       extraPackages = [
+      extraPackages = [
         pkgs.libGL
       ];
     };
