@@ -5,11 +5,12 @@
   self,
   ...
 }: let
-  discordBot = pkgs.python312Packages.buildPythonApplication {
+  discordBot = pkgs.python313Packages.buildPythonApplication {
     pname = "discordBot";
-    version = "0.1.0";
-
-    propagatedBuildInputs = with pkgs.python312Packages; [
+    version = "0.1.1";
+    pyproject = true;
+    build-system = [pkgs.python313Packages.setuptools];
+    propagatedBuildInputs = with pkgs.python313Packages; [
       discordpy
       aiohttp
       unidecode
@@ -18,7 +19,7 @@
       python-dotenv
       
     ];
-    checkInputs = with pkgs.python312Packages; [
+    checkInputs = with pkgs.python313Packages; [
       discordpy
       aiohttp
       unidecode
@@ -26,23 +27,23 @@
       pyradios
       python-dotenv
     ];
-    nativeBuildInputs = [ pkgs.python312Packages.setuptools pkgs.python312Packages.pip ];
+    nativeBuildInputs = [ pkgs.python313Packages.setuptools pkgs.python313Packages.pip ];
 
     buildInputs = [
-      pkgs.python312Packages.setuptools
+      pkgs.python313Packages.setuptools
     ];
 
     src = pkgs.fetchFromGitHub {
       owner = "iuricarras";
       repo = "discord_bot";
-      rev = "9ab1f1adeeffec94746ee20ce604ff817f51575a";
+      rev = "bc17f490f1e3315d2ef7db5b64b33feed444b006";
       #sha256 = lib.fakeSha256;
-      sha256 = "sha256-tgI++nVRhwiOvM+csXpLHHz/FjnQmdtR7+D4nYvoVIw=";
+      sha256 = "sha256-WyPIVPDcyZAlbq20fhRwZ1Zia8H2dMJBGHNUWfyuQ4A=";
     };
   };
 in {
   systemd.services.discordbot = let 
-    python = pkgs.python312.withPackages(ppkgs: with ppkgs; [
+    python = pkgs.python313.withPackages(ppkgs: with ppkgs; [
       discordpy
       aiohttp
       unidecode
@@ -61,7 +62,7 @@ in {
       User = "discord";
       Group = "discord";
       Restart = "always";
-      ExecStart = "${python}/bin/python ${discordBot}/lib/python3.12/site-packages/discordBot/main.py";
+      ExecStart = "${python}/bin/python ${discordBot}/lib/python3.13/site-packages/discordBot/main.py";
       StartLimitBurst = "30";
       RestartSec = "5s";
     };

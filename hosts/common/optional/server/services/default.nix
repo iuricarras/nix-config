@@ -13,8 +13,9 @@
     ./discord.nix
     ./overseerr.nix
     ./homarr.nix
-    ./sops.nix
+   # ./sops.nix
     ./ddclient.nix
+    ./jellyfin.nix
   ];
 
   services = {

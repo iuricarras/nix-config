@@ -4,7 +4,7 @@
   ...
 }: let
 in {
-  imports = [
+  imports = lib.flatten [
     #
     # ========== Hardware ==========
     #
@@ -14,6 +14,7 @@ in {
     inputs.hardware.nixosModules.common-pc-laptop
     inputs.hardware.nixosModules.common-pc-ssd
 
+    inputs.nurpkgs.modules.nixos.default
     #
     # ========== Disk Layout ==========
     #

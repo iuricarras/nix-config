@@ -6,18 +6,21 @@
   config,
   ...
 }: let
-  sopsFolder = builtins.toString inputs.nix-secrets + "/sops";
+  sopsFolder = builtins.toString inputs.nix-secrets;
 in {
   #the import for inputs.sops-nix.nixosModules.sops is handled in hosts/common/core/default.nix so that it can be dynamically input according to the platform
 
   sops = {
     #    defaultSopsFile = "${secretsFile}";
-    defaultSopsFile = "${sopsFolder}/${config.hostSpec.hostName}.yaml";
+    defaultSopsFile = "${sopsFolder}/secret.yaml";
     validateSopsFiles = false;
     age = {
       # automatically import host SSH keys as age keys
       sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+      keyFile = "/var/lib/sops-nix/key.txt";
+      generateKey = true;
     };
+         
     # secrets will be output to /run/secrets
     # e.g. /run/secrets/msmtp-password
     # secrets required for user creation are handled in respective ./users/<username>.nix files
@@ -33,17 +36,17 @@ in {
       # These age keys are are unique for the user on each host and are generated on their own (i.e. they are not derived
       # from an ssh key).
 
-      "keys/age" = {
-        owner = config.users.users.${config.hostSpec.username}.name;
-        inherit (config.users.users.${config.hostSpec.username}) group;
-        # We need to ensure the entire directory structure is that of the user...
-        path = "${config.hostSpec.home}/.config/sops/age/keys.txt";
-      };
-      # extract password/username to /run/secrets-for-users/ so it can be used to create the user
-      "passwords/${config.hostSpec.username}" = {
-        sopsFile = "${sopsFolder}/shared.yaml";
-        neededForUsers = true;
-      };
+      # "keys/age" = {
+      #   owner = config.users.users.${config.hostSpec.username}.name;
+      #   inherit (config.users.users.${config.hostSpec.username}) group;
+      #   # We need to ensure the entire directory structure is that of the user...
+      #   path = "${config.hostSpec.home}/.config/sops/age/keys.txt";
+      # };
+      # # extract password/username to /run/secrets-for-users/ so it can be used to create the user
+      # "passwords/${config.hostSpec.username}" = {
+      #   sopsFile = "${sopsFolder}/shared.yaml";
+      #   neededForUsers = true;
+      # };
     }
     # only reference discord api and cloudflare api if host is a server
     (lib.mkIf config.hostSpec.isServer {
@@ -59,6 +62,9 @@ in {
         owner = "root";
         group = "root";
       };
+      discord-token = {};
+      homarr-api-token = {};
+      cloudflare-api = {};
     })
   ];
   # The containing folders are created as root and if this is the first ~/.config/ entry,
