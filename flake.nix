@@ -130,6 +130,12 @@
     #
     # ========= Personal Repositories =========
     #
+    # Discord Bot
+    #
+    discord_bot = {
+      url = "github:iuricarras/discord_bot";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Private secrets repo.
     # Authenticate via ssh and use shallow clone
     nix-secrets = {

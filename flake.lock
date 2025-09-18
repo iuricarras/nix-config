@@ -67,6 +67,26 @@
         "type": "github"
       }
     },
+    "discord_bot": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1758215715,
+        "narHash": "sha256-5RCWTJdbHNLTYD3TIYwtLsDTQHn/GyFmGjXkcK7A3i0=",
+        "owner": "iuricarras",
+        "repo": "discord_bot",
+        "rev": "2dc4442cbb2b19a76f11f93bb4efef22eeefe2e3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "iuricarras",
+        "repo": "discord_bot",
+        "type": "github"
+      }
+    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -489,6 +509,7 @@
     },
     "root": {
       "inputs": {
+        "discord_bot": "discord_bot",
         "disko": "disko",
         "hardware": "hardware",
         "home-manager": "home-manager",

@@ -3,44 +3,10 @@
   lib,
   config,
   self,
+  inputs,
   ...
 }: let
-  discordBot = pkgs.python313Packages.buildPythonApplication {
-    pname = "discordBot";
-    version = "0.1.1";
-    pyproject = true;
-    build-system = [pkgs.python313Packages.setuptools];
-    propagatedBuildInputs = with pkgs.python313Packages; [
-      discordpy
-      aiohttp
-      unidecode
-      yt-dlp
-      pyradios
-      python-dotenv
-      
-    ];
-    checkInputs = with pkgs.python313Packages; [
-      discordpy
-      aiohttp
-      unidecode
-      yt-dlp
-      pyradios
-      python-dotenv
-    ];
-    nativeBuildInputs = [ pkgs.python313Packages.setuptools pkgs.python313Packages.pip ];
-
-    buildInputs = [
-      pkgs.python313Packages.setuptools
-    ];
-
-    src = pkgs.fetchFromGitHub {
-      owner = "iuricarras";
-      repo = "discord_bot";
-      rev = "bc17f490f1e3315d2ef7db5b64b33feed444b006";
-      #sha256 = lib.fakeSha256;
-      sha256 = "sha256-WyPIVPDcyZAlbq20fhRwZ1Zia8H2dMJBGHNUWfyuQ4A=";
-    };
-  };
+  discordBot = inputs.discord_bot.packages.x86_64-linux.discordBot;
 in {
   systemd.services.discordbot = let 
     python = pkgs.python313.withPackages(ppkgs: with ppkgs; [
