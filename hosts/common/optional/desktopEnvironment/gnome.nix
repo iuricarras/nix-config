@@ -18,14 +18,14 @@ in {
       desktopManager.gnome.enable = true;
       displayManager.gdm.enable = true;
       # Uncomment and adjust if you want to use extra GSettings overrides:
-      desktopManager.gnome.extraGSettingsOverridePackages = [ pkgs.mutter ];
+      desktopManager.gnome.extraGSettingsOverridePackages = [pkgs.mutter];
       desktopManager.gnome.extraGSettingsOverrides = ''
         [org.gnome.mutter]
         experimental-features=['variable-refresh-rate', 'scale-monitor-framebuffer']
       '';
     };
-
-    environment.systemPackages = (builtins.attrValues {
+    programs.dconf.enable = true;
+    environment.systemPackages = builtins.attrValues {
       inherit
         (pkgs)
         gnome-tweaks
@@ -45,6 +45,6 @@ in {
         user-themes
         alphabetical-app-grid
         ;
-    });
+    };
   };
 }

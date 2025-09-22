@@ -65,7 +65,7 @@ in {
 
   hostSpec = {
     hostName = "rufus";
-    isDEPlasma = true; # enable Cinnamon desktop environment and various definitions on the configuration
+    isDEGnome = true; # enable Gnome desktop environment and various definitions on the configuration
   };
 
   networking = {
