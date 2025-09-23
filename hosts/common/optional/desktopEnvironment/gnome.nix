@@ -24,27 +24,5 @@ in {
         experimental-features=['variable-refresh-rate', 'scale-monitor-framebuffer']
       '';
     };
-    programs.dconf.enable = true;
-    environment.systemPackages = builtins.attrValues {
-      inherit
-        (pkgs)
-        gnome-tweaks
-        papirus-icon-theme
-        yaru-theme
-        ubuntu_font_family
-        ubuntu-themes
-        ubuntu-sans
-        ;
-
-      inherit
-        (pkgs.gnomeExtensions)
-        appindicator
-        ideapad
-        tiling-assistant
-        dash-to-dock
-        user-themes
-        alphabetical-app-grid
-        ;
-    };
   };
 }

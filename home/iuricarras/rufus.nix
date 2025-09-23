@@ -11,6 +11,7 @@
     #
     common/optional/gaming
     common/optional/tools
+    common/optional/desktopEnvironment
 
     common/optional/gns3.nix
     common/optional/sops.nix
