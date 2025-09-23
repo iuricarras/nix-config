@@ -14,6 +14,7 @@ in {
   };
 
   config = mkIf cfg.enable {
+    # Theme settings for GTK applications
     gtk = {
       enable = true;
       theme = {
@@ -28,8 +29,58 @@ in {
         name = "Yaru";
         package = pkgs.yaru-theme;
       };
+
+      gtk3.extraConfig = {
+        Settings = ''
+
+          gtk-application-prefer-dark-theme=0
+
+        '';
+      };
+
+      gtk4.extraConfig = {
+        Settings = ''
+
+          gtk-application-prefer-dark-theme=0
+
+        '';
+      };
+    };
+    dconf.enable = true;
+    dconf.settings = {
+      "org/gnome/shell" = {
+        favorite-apps = [
+          "firefox.desktop"
+          "org.gnome.Nautilus.desktop"
+          "code.desktop"
+          "org.gnome.Console.desktop"
+        ];
+        disable-user-extensions = false;
+
+        enabled-extensions = [
+          "user-theme@gnome-shell-extensions.gcampax.github.com"
+          "dash-to-dock@micxgx.gmail.com"
+          "AlphabeticalAppGrid@stuarthayhurst"
+          "appindicatorsupport@rgcjonas.gmail.com"
+        ];
+
+        "org/gnome/shell/extensions/user-theme" = "Yaru";
+      };
+      "org/gnome/desktop/interface" = {
+        color-scheme = "default";
+        gtk-theme = "Yaru";
+        icon-theme = "Papirus";
+        cursor-theme = "Yaru";
+      };
     };
 
-    home.sessionVariables.GTK_THEME = "Yaru";
+    home.packages = with pkgs; [
+      gnomeExtensions.user-themes
+      gnomeExtensions.dash-to-dock
+      gnomeExtensions.alphabetical-app-grid
+      gnomeExtensions.appindicator
+      yaru-theme
+      dconf-editor
+    ];
   };
 }
