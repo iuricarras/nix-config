@@ -42,10 +42,10 @@ in {
       #
       "hosts/common/optional/bootloader/grub.nix"
       "hosts/common/optional/desktopEnvironment"
-      "hosts/common/optional/virtualization/virtualbox.nix"
+      #"hosts/common/optional/virtualization/virtualbox.nix"
       "hosts/common/optional/virtualization/libvirt.nix"
-      "hosts/common/optional/virtualization/vmware.nix"
-      "hosts/common/optional/virtualization/waydroid.nix"
+      #"hosts/common/optional/virtualization/vmware.nix"
+      #"hosts/common/optional/virtualization/waydroid.nix"
       "hosts/common/optional/virtualization/proxmox.nix"
       "hosts/common/optional/audio.nix"
       "hosts/common/optional/gaming.nix"
@@ -105,7 +105,7 @@ in {
           group = "root";
           user = "root";
           mode = "0644";
-          argument = "1";
+          argument = "0";
         };
       };
     };

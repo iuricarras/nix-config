@@ -40,7 +40,7 @@
           ];
         };
     };
-    # Invoke mkHost for each host config 
+    # Invoke mkHost for each host config
     mkHostConfigs = hosts: lib.foldl (acc: set: acc // set) {} (lib.map (host: mkHost host) hosts);
     # Return the hosts declared in the given directory
     readHosts = folder: lib.attrNames (builtins.readDir ./hosts/${folder});
@@ -143,9 +143,7 @@
       flake = false;
     };
 
-
     #nixos-proxmox
     proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
-
   };
 }
