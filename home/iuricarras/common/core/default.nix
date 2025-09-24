@@ -84,7 +84,6 @@
       yq-go # yaml pretty printer and manipulator
       zip # zip compression
       xarchiver # gui archive manager
-      vscode
       git
       neovim
       ;

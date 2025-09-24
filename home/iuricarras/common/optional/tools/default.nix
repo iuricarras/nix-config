@@ -1,7 +1,12 @@
-{pkgs, config, ...}:
-let
-homeDirectory = config.home.homeDirectory;
-in{
+{
+  pkgs,
+  ...
+}: {
+
+imports = [
+./vscode.nix
+];
+
   home.packages = builtins.attrValues {
     inherit
       (pkgs)
@@ -13,37 +18,15 @@ in{
       shortwave # Radio Player
       obsidian
       ;
-      inherit (pkgs.obs-studio-plugins)
+    inherit
+      (pkgs.obs-studio-plugins)
       obs-vaapi
       ;
-      inherit (pkgs.kdePackages)
+    inherit
+      (pkgs.kdePackages)
       kdenlive
       ;
   };
 
-  home.file.".config/Code/User/settings.json".text = ''
-    {
-      "github.copilot.nextEditSuggestions.enabled": true,
-      "files.autoSave": "afterDelay",
-      "nix.serverPath": "nixd",
-      "nix.enableLanguageServer": true,
-      "nix.serverSettings": {
-        "nixd": {
-          "formatting": {
-            "command": [ "alejandra" ], // or nixfmt or nixpkgs-fmt
-          },
-          // "options": {
-          //    "nixos": {
-          //      "expr": "(builtins.getFlake \"/PATH/TO/FLAKE\").nixosConfigurations.CONFIGNAME.options"
-          //    },
-          //    "home_manager": {
-          //      "expr": "(builtins.getFlake \"/PATH/TO/FLAKE\").homeConfigurations.CONFIGNAME.options"
-          //    },
-          // },
-        }
-      }
-    }
-  '';
-
-
+  
 }
