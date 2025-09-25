@@ -54,6 +54,8 @@ in {
           "org.gnome.Nautilus.desktop"
           "code.desktop"
           "org.gnome.Console.desktop"
+          "vesktop.desktop"
+          "com.usebottles.bottles.desktop"
         ];
         disable-user-extensions = false;
 
@@ -63,14 +65,20 @@ in {
           "AlphabeticalAppGrid@stuarthayhurst"
           "appindicatorsupport@rgcjonas.gmail.com"
         ];
-
-        "org/gnome/shell/extensions/user-theme" = "Yaru";
+      };
+      "org/gnome/shell/extensions/user-theme" = {
+        name = "Yaru";
       };
       "org/gnome/desktop/interface" = {
         color-scheme = "default";
         gtk-theme = "Yaru";
         icon-theme = "Papirus";
         cursor-theme = "Yaru";
+        accent-color = "orange";
+      };
+      "org/gnome/desktop/background" = {
+        picture-uri = "${./wallpaper.jpg}";
+        picture-uri-dark = "${./wallpaper.jpg}";
       };
     };
 
@@ -81,6 +89,7 @@ in {
       gnomeExtensions.appindicator
       yaru-theme
       dconf-editor
+      gnome-tweaks
     ];
   };
 }
