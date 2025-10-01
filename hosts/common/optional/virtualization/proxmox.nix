@@ -9,7 +9,7 @@
   nix.settings.trusted-public-keys = ["cache.saumon.network/proxmox-nixos:D9RYSWpQQC/msZUWphOY2I5RLH5Dd6yQcaHIuug7dWM="];
   services.proxmox-ve = {
     enable = true;
-    ipAddress = "192.168.185.1";
+    ipAddress = "192.168.214.1";
   };
 
   services.proxmox-ve.bridges = ["vmbr0"];
