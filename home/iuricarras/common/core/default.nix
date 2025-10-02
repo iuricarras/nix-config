@@ -63,7 +63,7 @@
       btop # resource monitor
       coreutils # basic gnu utils
       curl
-      vesktop # chat
+      discord # chat
       nextcloud-client # cloud sync
       tldr
       nixd

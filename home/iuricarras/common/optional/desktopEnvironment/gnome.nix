@@ -54,7 +54,7 @@ in {
           "org.gnome.Nautilus.desktop"
           "code.desktop"
           "org.gnome.Console.desktop"
-          "vesktop.desktop"
+          "discord.desktop"
           "com.usebottles.bottles.desktop"
         ];
         disable-user-extensions = false;
