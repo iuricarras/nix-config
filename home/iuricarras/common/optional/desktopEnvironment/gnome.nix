@@ -64,6 +64,7 @@ in {
           "dash-to-dock@micxgx.gmail.com"
           "AlphabeticalAppGrid@stuarthayhurst"
           "appindicatorsupport@rgcjonas.gmail.com"
+          "caffeine@patapon.info"
         ];
       };
       "org/gnome/shell/extensions/user-theme" = {

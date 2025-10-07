@@ -12,11 +12,11 @@ imports = [
       (pkgs)
       obs-studio
       #postman
-      winbox
       github-desktop
       vlc
       shortwave # Radio Player
       obsidian
+      netbeans
       ;
     inherit
       (pkgs.obs-studio-plugins)
