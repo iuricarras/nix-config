@@ -65,6 +65,7 @@ in {
           "AlphabeticalAppGrid@stuarthayhurst"
           "appindicatorsupport@rgcjonas.gmail.com"
           "caffeine@patapon.info"
+          "blur-my-shell@aunetx"
         ];
       };
       "org/gnome/shell/extensions/user-theme" = {
@@ -88,9 +89,12 @@ in {
       gnomeExtensions.dash-to-dock
       gnomeExtensions.alphabetical-app-grid
       gnomeExtensions.appindicator
+      gnomeExtensions.caffeine
+      gnomeExtensions.blur-my-shell
       yaru-theme
       dconf-editor
       gnome-tweaks
+      gnome-boxes
     ];
   };
 }

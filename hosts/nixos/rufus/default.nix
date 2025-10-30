@@ -46,11 +46,12 @@ in {
       "hosts/common/optional/virtualization/libvirt.nix"
       "hosts/common/optional/virtualization/vmware.nix"
       #"hosts/common/optional/virtualization/waydroid.nix"
-      "hosts/common/optional/virtualization/proxmox.nix"
+      #"hosts/common/optional/virtualization/proxmox.nix"
       "hosts/common/optional/audio.nix"
       "hosts/common/optional/gaming.nix"
       "hosts/common/optional/plymouth.nix"
       "hosts/common/optional/swap.nix"
+      "hosts/common/optional/masters.nix"
 
       #
       # ========== One Time Configs ==========
@@ -105,7 +106,22 @@ in {
           group = "root";
           user = "root";
           mode = "0644";
-          argument = "0";
+          argument = "1";
+        };
+      };
+    };
+  };
+
+  specialisation.fullbattery.configuration = {
+    systemd.tmpfiles.settings = {
+      "ideapad-set-conservation-mode" = {
+        "/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode" = {
+          "f+" = {
+            group = "root";
+            user = "root";
+            mode = "0644";
+            argument = lib.mkForce "0";
+          };
         };
       };
     };
@@ -114,7 +130,6 @@ in {
   # Undervolt - CPU
   services.undervolt.enable = true;
   services.undervolt.coreOffset = -130;
-
 
   # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.11";
