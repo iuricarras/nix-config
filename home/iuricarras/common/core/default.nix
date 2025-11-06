@@ -64,7 +64,6 @@
       coreutils # basic gnu utils
       curl
       discord # chat
-      vesktop
       nextcloud-client # cloud sync
       tldr
       nixd
