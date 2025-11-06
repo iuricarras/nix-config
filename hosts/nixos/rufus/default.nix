@@ -16,7 +16,6 @@ in {
     inputs.hardware.nixosModules.common-pc-ssd
 
     inputs.nurpkgs.modules.nixos.default
-    inputs.proxmox-nixos.nixosModules.proxmox-ve
     #
     # ========== Disk Layout ==========
     #
@@ -45,6 +44,7 @@ in {
       #"hosts/common/optional/virtualization/virtualbox.nix"
       "hosts/common/optional/virtualization/libvirt.nix"
       "hosts/common/optional/virtualization/vmware.nix"
+      "hosts/common/optional/virtualization/docker.nix"
       #"hosts/common/optional/virtualization/waydroid.nix"
       #"hosts/common/optional/virtualization/proxmox.nix"
       "hosts/common/optional/audio.nix"
@@ -66,7 +66,7 @@ in {
 
   hostSpec = {
     hostName = "rufus";
-    isDEGnome = true; # enable Gnome desktop environment and various definitions on the configuration
+    isDEPlasma = true; # enable Plasma desktop environment and various definitions on the configuration
   };
 
   networking = {
