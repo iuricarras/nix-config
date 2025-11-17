@@ -2,22 +2,17 @@
   inputs,
   lib,
   pkgs,
-  config,
   ...
-}:
-let
-in
-{
+}: let
+in {
   imports = lib.flatten [
     #
     # ========== Hardware ==========
     #
     ./hardware-configuration.nix
     inputs.hardware.nixosModules.common-cpu-amd
-    #inputs.hardware.nixosModules.common-cpu-intel
-    inputs.hardware.nixosModules.common-gpu-amd
-    #inputs.hardware.nixosModules.common-gpu-nvidia
-    #inputs.hardware.nixosModules.common-gpu-intel
+    inputs.hardware.nixosModules.common-gpu-nvidia
+    inputs.hardware.nixosModules.common-pc-laptop
     inputs.hardware.nixosModules.common-pc-ssd
 
     inputs.nurpkgs.modules.nixos.default
@@ -35,28 +30,33 @@ in
       # ========== Required Configs ==========
       #
       "hosts/common/core"
-
-
-      #
-      #
-      #
-      "hosts/common/disks/hdd.nix"
       "hosts/common/disks/home.nix"
+      "hosts/common/disks/hdd.nix"
+      #
+      # ========== Non-Primary Users to Create ==========
+      #
 
       #
       # ========== Optional Configs ==========
       #
       "hosts/common/optional/bootloader/grub.nix"
       "hosts/common/optional/desktopEnvironment"
-      "hosts/common/optional/graphics/amd.nix"
       #"hosts/common/optional/virtualization/virtualbox.nix"
       "hosts/common/optional/virtualization/libvirt.nix"
-      #"hosts/common/optional/virtualization/vmware.nix"
+      "hosts/common/optional/virtualization/vmware.nix"
+      "hosts/common/optional/virtualization/docker.nix"
+      #"hosts/common/optional/virtualization/waydroid.nix"
+      #"hosts/common/optional/virtualization/proxmox.nix"
       "hosts/common/optional/audio.nix"
       "hosts/common/optional/gaming.nix"
       "hosts/common/optional/plymouth.nix"
       "hosts/common/optional/swap.nix"
-      "hosts/common/optional/droidcam.nix"
+      "hosts/common/optional/masters.nix"
+
+      #
+      # ========== One Time Configs ==========
+      #
+      #"hosts/common/optional/virtualization/docker.nix"
     ])
   ];
 
@@ -65,25 +65,38 @@ in
   #
 
   hostSpec = {
-    hostName = "yoggi";
-    isDEGnome = true; # enable Gnome desktop environment and various definitions on the system
+    hostName = "suki";
+    isDEPlasma = true; # enable Plasma desktop environment and various definitions on the configuration
   };
 
   networking = {
     networkmanager.enable = true;
-    enableIPv6 = false;
   };
 
   boot.initrd = {
     systemd.enable = true;
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  # Nvidia GPU
+  hardware = {
+    nvidia = {
+      open = true;
+      modesetting.enable = lib.mkDefault true;
+      powerManagement.enable = lib.mkDefault true;
+      powerManagement.finegrained = true;
 
-
-  boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
-boot.kernelModules = ["v4l2loopback"];  
-
+      prime = {
+        amdgpuBusId = "PCI:0:6:0";
+        nvidiaBusId = "PCI:1:0:0";
+      };
+    };
+    graphics = {
+      enable = true;
+      extraPackages = [
+        pkgs.libGL
+      ];
+    };
+  };
 
   # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.11";

@@ -1,19 +1,36 @@
-{pkgs, ...}:{
+{
+  pkgs,
+  config,
+  ...
+}: let
+  idea = pkgs.jetbrains.idea-ultimate.override {forceWayland = true;};
+in {
+  imports = [
+    ./vscode.nix
+  ];
+
   home.packages = builtins.attrValues {
     inherit
       (pkgs)
       obs-studio
       #postman
-      winbox
       github-desktop
       vlc
       shortwave # Radio Player
-      ;
-      inherit (pkgs.obs-studio-plugins)
+      obsidian
+      netbeans
+      ciscoPacketTracer8
+  ;
+    inherit
+      (pkgs.obs-studio-plugins)
       obs-vaapi
       ;
-      inherit (pkgs.kdePackages)
+    inherit
+      (pkgs.kdePackages)
       kdenlive
+      ;
+    inherit
+      idea
       ;
   };
 }

@@ -1,4 +1,4 @@
-{...}:
+{pkgs, ...}:
 {
   boot.kernelModules = ["v4l2loopback"];
 
@@ -6,4 +6,5 @@
   networking.firewall.allowedUDPPorts = [4747];
   
   programs.droidcam.enable = true;
+  environment.systemPackages = [ pkgs.vesktop ];
 }

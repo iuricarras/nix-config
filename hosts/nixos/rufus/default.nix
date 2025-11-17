@@ -16,7 +16,6 @@ in {
     inputs.hardware.nixosModules.common-pc-ssd
 
     inputs.nurpkgs.modules.nixos.default
-    inputs.proxmox-nixos.nixosModules.proxmox-ve
     #
     # ========== Disk Layout ==========
     #
@@ -42,15 +41,17 @@ in {
       #
       "hosts/common/optional/bootloader/grub.nix"
       "hosts/common/optional/desktopEnvironment"
-      "hosts/common/optional/virtualization/virtualbox.nix"
+      #"hosts/common/optional/virtualization/virtualbox.nix"
       "hosts/common/optional/virtualization/libvirt.nix"
       "hosts/common/optional/virtualization/vmware.nix"
-      "hosts/common/optional/virtualization/waydroid.nix"
-      "hosts/common/optional/virtualization/proxmox.nix"
+      "hosts/common/optional/virtualization/docker.nix"
+      #"hosts/common/optional/virtualization/waydroid.nix"
+      #"hosts/common/optional/virtualization/proxmox.nix"
       "hosts/common/optional/audio.nix"
       "hosts/common/optional/gaming.nix"
       "hosts/common/optional/plymouth.nix"
       "hosts/common/optional/swap.nix"
+      "hosts/common/optional/masters.nix"
 
       #
       # ========== One Time Configs ==========
@@ -65,7 +66,7 @@ in {
 
   hostSpec = {
     hostName = "rufus";
-    isDEPlasma = true; # enable Cinnamon desktop environment and various definitions on the configuration
+    isDEPlasma = true; # enable Plasma desktop environment and various definitions on the configuration
   };
 
   networking = {
@@ -76,7 +77,7 @@ in {
     systemd.enable = true;
   };
 
-  # Nvidia GPU
+  # Nvidia GPU - Editar isto
   hardware = {
     nvidia = {
       open = true;
@@ -85,7 +86,7 @@ in {
       powerManagement.finegrained = true;
 
       prime = {
-        intelBusId = "PCI:0:2:0";
+        amdgpuBusId = "PCI:0:6:0";
         nvidiaBusId = "PCI:1:0:0";
       };
     };
@@ -97,7 +98,7 @@ in {
     };
   };
 
-  # Conservation Mode - Lenovo
+  #  Conservation Mode - Lenovo
   systemd.tmpfiles.settings = {
     "ideapad-set-conservation-mode" = {
       "/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode" = {
@@ -111,7 +112,22 @@ in {
     };
   };
 
-  # Undervolt - CPU
+  specialisation.fullbattery.configuration = {
+    systemd.tmpfiles.settings = {
+      "ideapad-set-conservation-mode" = {
+        "/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode" = {
+          "f+" = {
+            group = "root";
+            user = "root";
+            mode = "0644";
+            argument = lib.mkForce "0";
+          };
+        };
+      };
+    };
+  };
+
+  #  Undervolt - CPU
   services.undervolt.enable = true;
   services.undervolt.coreOffset = -130;
 

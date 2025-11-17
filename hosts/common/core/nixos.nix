@@ -22,7 +22,7 @@
   programs.nh = {
     enable = true;
     clean.enable = true;
-    clean.extraArgs = "--keep-since 20d --keep 20";
+    clean.extraArgs = "--keep-since 20d";
     flake = "${config.hostSpec.home}/Github/nix-config";
   };
 
