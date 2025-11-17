@@ -55,7 +55,6 @@ in {
 
   networking = {
     networkmanager.enable = true;
-    enableIPv6 = false;
   };
 
   boot.loader = {
@@ -66,7 +65,18 @@ in {
     timeout = 3;
   };
 
+  services = {
+    iperf3 = {
+      enable = true;
+      openFirewall = true;
+      port = 5201;
+    };
+  };
+
   services.openssh.enable = true;
+
+  services.undervolt.enable = true;
+  services.undervolt.coreOffset = -130;
 
   # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.11";
