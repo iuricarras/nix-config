@@ -10,9 +10,10 @@
   services.httpd.enable = true;
   services.httpd.adminAddr = "webmaster@example.org";
   services.httpd.enablePHP = true; # oof... not a great idea in my opinion
+  services.httpd.user = "iuricarras";
 
   services.httpd.virtualHosts."ssi.local" = {
-    documentRoot = "/var/www/ssi.local";
+    documentRoot = "/home/iuricarras/Mestrado/SSI/Lab09";
     locations = {
       "/" = {
       index = "index.php index.html";

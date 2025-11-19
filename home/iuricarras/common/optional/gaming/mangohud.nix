@@ -2,15 +2,23 @@
   programs.mangohud = {
     enable = true;
     settings = {
+      # FPS
       fps_limit = 0;
-      cpu_stats = true;
-      gpu_stats = true;
       frametime = true;
-      vram_stats = true;
-      ram_stats = true;
-      battery_stats = true;
-      clock_stats = true;
-      no_display = false;
+
+      # CPU
+      cpu_stats = true;
+      cpu_temp = true;
+
+      # RAM
+      ram = true;
+      
+      # GPU
+      gpu_stats = true;
+      gpu_temp = true;
+      
+      # VRAM
+      vram = true;
     };
   };
 }
