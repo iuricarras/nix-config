@@ -19,7 +19,7 @@ in {
       shortwave # Radio Player
       obsidian
       netbeans
-      ciscoPacketTracer8
+      #ciscoPacketTracer8
   ;
     inherit
       (pkgs.obs-studio-plugins)
@@ -31,6 +31,10 @@ in {
       ;
     inherit
       idea
+      ;
+    inherit
+      (pkgs.nur.repos.iuricarras)
+      ciscoPacketTracer9
       ;
   };
 }
