@@ -136,6 +136,14 @@
       url = "github:iuricarras/discord_bot";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    #
+    # SDDM Themes
+    #
+    sddm-themes = {
+      url = "github:iuricarras/sddm-themes";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Private secrets repo.
     # Authenticate via ssh and use shallow clone
     nix-secrets = {
