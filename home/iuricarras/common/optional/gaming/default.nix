@@ -47,6 +47,9 @@
         Type=Application
       '';
 in {
+  imports = [
+    ./mangohud.nix
+  ];
   home.packages =
     [
       steam-session
@@ -57,8 +60,7 @@ in {
     ++ builtins.attrValues {
       inherit
         (pkgs)
-        path-of-building
-        rpcs3
+        #rpcs3
         pcsx2
         ppsspp-sdl-wayland
         protonplus

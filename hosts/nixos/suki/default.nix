@@ -10,7 +10,7 @@ in {
     # ========== Hardware ==========
     #
     ./hardware-configuration.nix
-    inputs.hardware.nixosModules.common-cpu-intel
+    inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-nvidia
     inputs.hardware.nixosModules.common-pc-laptop
     inputs.hardware.nixosModules.common-pc-ssd
@@ -65,7 +65,7 @@ in {
   #
 
   hostSpec = {
-    hostName = "rufus";
+    hostName = "suki";
     isDEPlasma = true; # enable Plasma desktop environment and various definitions on the configuration
   };
 
@@ -77,7 +77,7 @@ in {
     systemd.enable = true;
   };
 
-  # Nvidia GPU - Editar isto
+  # Nvidia GPU
   hardware = {
     nvidia = {
       open = true;
@@ -98,38 +98,9 @@ in {
     };
   };
 
-  #  Conservation Mode - Lenovo
-  systemd.tmpfiles.settings = {
-    "ideapad-set-conservation-mode" = {
-      "/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode" = {
-        "f+" = {
-          group = "root";
-          user = "root";
-          mode = "0644";
-          argument = "1";
-        };
-      };
-    };
-  };
-
-  specialisation.fullbattery.configuration = {
-    systemd.tmpfiles.settings = {
-      "ideapad-set-conservation-mode" = {
-        "/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode" = {
-          "f+" = {
-            group = "root";
-            user = "root";
-            mode = "0644";
-            argument = lib.mkForce "0";
-          };
-        };
-      };
-    };
-  };
-
-  #  Undervolt - CPU
-  services.undervolt.enable = true;
-  services.undervolt.coreOffset = -130;
+  nixpkgs.config.permittedInsecurePackages = [
+                "ciscoPacketTracer8-8.2.2"
+              ];
 
   # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.11";

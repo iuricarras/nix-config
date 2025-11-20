@@ -20,7 +20,7 @@ in {
       obsidian
       netbeans
       deluge
-      ;
+    ;
     inherit
       (pkgs.obs-studio-plugins)
       obs-vaapi
@@ -31,6 +31,10 @@ in {
       ;
     inherit
       idea
+      ;
+    inherit
+      (pkgs.nur.repos.iuricarras)
+      ciscoPacketTracer9
       ;
   };
 }
