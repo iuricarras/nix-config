@@ -52,5 +52,10 @@
       default = false;
       description = "Used to indicate a host that uses the Cinnamon desktop environment";
     };
+    isWMHyprland = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Used to indicate a host that uses the Hyprland window manager";
+    };
   };
 }
