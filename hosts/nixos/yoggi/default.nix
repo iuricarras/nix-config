@@ -66,7 +66,7 @@ in
 
   hostSpec = {
     hostName = "yoggi";
-    isDEGnome = true; # enable Gnome desktop environment and various definitions on the system
+    isDEPlasma = true; # enable Plasma desktop environment and various definitions on the system
   };
 
   networking = {
