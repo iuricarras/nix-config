@@ -19,6 +19,7 @@ in {
       shortwave # Radio Player
       obsidian
       netbeans
+      deluge
       ;
     inherit
       (pkgs.obs-studio-plugins)
