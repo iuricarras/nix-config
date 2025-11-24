@@ -29,6 +29,7 @@
     sessionVariables = {
       NH_FLAKE = "$HOME/Github/nix-config";
       MANPAGER = "batman"; # see ./cli/bat.nix
+      NIXOS_OZONE_WL = "1";
     };
     preferXdgDirectories = true; # whether to make programs use XDG directories whenever supported
   };

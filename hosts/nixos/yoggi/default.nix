@@ -57,6 +57,7 @@ in
       "hosts/common/optional/plymouth.nix"
       "hosts/common/optional/swap.nix"
       "hosts/common/optional/droidcam.nix"
+      "hosts/common/optional/masters.nix"
     ])
   ];
 
@@ -66,7 +67,7 @@ in
 
   hostSpec = {
     hostName = "yoggi";
-    isDEPlasma = true; # enable Plasma desktop environment and various definitions on the system
+    isWMHyprland = true; # enable Hyprland window manager and various definitions on the system
   };
 
   networking = {

@@ -536,8 +536,29 @@
         "nixvirt": "nixvirt",
         "nurpkgs": "nurpkgs",
         "proxmox-nixos": "proxmox-nixos",
+        "sddm-themes": "sddm-themes",
         "sops-nix": "sops-nix",
         "stylix": "stylix"
+      }
+    },
+    "sddm-themes": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1763972627,
+        "narHash": "sha256-QKhOVX7fhL3puBnB/Zfty4YlfBpqz16Km3oOHTFhXrE=",
+        "owner": "iuricarras",
+        "repo": "sddm-themes",
+        "rev": "7230e5b73809eb6eb33e01d067559ba647c0d4fa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "iuricarras",
+        "repo": "sddm-themes",
+        "type": "github"
       }
     },
     "sops-nix": {
