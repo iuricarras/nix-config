@@ -23,12 +23,18 @@ in {
     services.displayManager.sddm = {
       enable = true;
       wayland.enable = true;
-      theme = "archcraft";
+      theme = "sddm-astronaut-theme";
+      extraPackages = with pkgs; [
+         kdePackages.qtsvg
+         kdePackages.qtmultimedia
+         kdePackages.qtvirtualkeyboard
+       ];
     };
     services.gnome.gnome-keyring.enable = true;
     security.polkit.enable = true;
     security.pam.services.sddm.enableGnomeKeyring = true;
-
+    services.gvfs.enable = true; # Mount, trash, and other functionalities
+    services.tumbler.enable = true; # Thumbnail generation
     environment.systemPackages = with pkgs; [
       hyprlock
       hypridle
@@ -62,7 +68,10 @@ in {
       glib
       libnotify
       inputs.sddm-themes.packages.x86_64-linux.archcraft
-    ];
+      xfce.thunar-archive-plugin
+      xfce.thunar-volman
+      sddm-astronaut
+      ];
 
     xdg.portal = {
       enable = true;
