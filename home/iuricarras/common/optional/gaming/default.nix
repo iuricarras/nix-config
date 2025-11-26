@@ -74,6 +74,7 @@ in {
         goverlay
         heroic
         cartridges
+        volanta
         ;
     };
 }
