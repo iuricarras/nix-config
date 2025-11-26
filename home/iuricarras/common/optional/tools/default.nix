@@ -35,6 +35,7 @@ in {
     inherit
       (pkgs.nur.repos.iuricarras)
       ciscoPacketTracer9
+      remixDesktop
       ;
   };
 }
