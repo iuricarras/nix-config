@@ -71,6 +71,7 @@ in {
       xfce.thunar-archive-plugin
       xfce.thunar-volman
       sddm-astronaut
+      networkmanager_dmenu
       ];
 
     xdg.portal = {
