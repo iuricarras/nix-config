@@ -66,7 +66,7 @@ in {
 
   hostSpec = {
     hostName = "suki";
-    isDEPlasma = true; # enable Plasma desktop environment and various definitions on the configuration
+    isWMHyprland = true; # enable Plasma desktop environment and various definitions on the configuration
   };
 
   networking = {
