@@ -73,6 +73,7 @@ in {
       sddm-astronaut
       networkmanager_dmenu
       libsecret
+      bluez
     ];
 
     xdg.portal = {
@@ -83,6 +84,8 @@ in {
     services.udev.extraRules = ''
       ACTION=="add", SUBSYSTEM=="backlight", RUN+="${pkgs.coreutils}/bin/chgrp video %S%p/brightness", RUN+="${pkgs.coreutils}/bin/chmod g+w %S%p/brightness"
     '';
+
+    hardware.bluetooth.enable = true;
 
     services.udev.path = [
       pkgs.coreutils # for chgrp
