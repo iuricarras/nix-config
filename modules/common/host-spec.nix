@@ -37,6 +37,11 @@
       default = false;
       description = "Used to indicate a host that uses work resources";
     };
+    isLaptop = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Used to indicate a laptop host";
+    };
     isDEGnome = lib.mkOption {
       type = lib.types.bool;
       default = false;

@@ -84,7 +84,6 @@
       xdg-user-dirs
       yq-go # yaml pretty printer and manipulator
       zip # zip compression
-      xarchiver # gui archive manager
       git
       neovim
       ;
