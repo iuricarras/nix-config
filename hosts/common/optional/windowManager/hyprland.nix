@@ -70,6 +70,18 @@
     rofi
     pulsemixer
     libnotify
+    bzip2
+    gzip
+    lrzip
+    lz4
+    lzip
+    lzop
+    p7zip
+    rar
+    gnutar
+    unzip
+    unrar
+    xarchiver
   ];
 
   programs.dconf.enable = true;

@@ -21,6 +21,8 @@
       "hades.gaiaserver.pt"
       "hephaestus.gaiaserver.pt"
       "poseidon.gaiaserver.pt"
+      "minecraft.gaiaserver.pt"
+      "access.gaiaserver.pt"
     ];
   };
 }

@@ -25,10 +25,10 @@ in {
       wayland.enable = true;
       theme = "sddm-astronaut-theme";
       extraPackages = with pkgs; [
-         kdePackages.qtsvg
-         kdePackages.qtmultimedia
-         kdePackages.qtvirtualkeyboard
-       ];
+        kdePackages.qtsvg
+        kdePackages.qtmultimedia
+        kdePackages.qtvirtualkeyboard
+      ];
     };
     services.gnome.gnome-keyring.enable = true;
     security.polkit.enable = true;
@@ -52,7 +52,6 @@ in {
       wf-recorder
       light
       yad
-      xfce.thunar
       geany
       mpv
       mpd
@@ -67,17 +66,30 @@ in {
       pulsemixer
       glib
       libnotify
-      inputs.sddm-themes.packages.x86_64-linux.archcraft
-      xfce.thunar-archive-plugin
-      xfce.thunar-volman
       sddm-astronaut
       networkmanager_dmenu
-      ];
+      libsecret
+      bluez
+      mate.engrampa
+    ];
 
+    programs.thunar = {
+      enable = true;
+      plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman ];
+    };
     xdg.portal = {
       enable = true;
       extraPortals = [pkgs.xdg-desktop-portal-hyprland pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal];
       config.common.default = "*";
     };
+
+    services.udev.extraRules = lib.mkIf config.hostSpec.isLaptop ''
+      ACTION=="add", SUBSYSTEM=="backlight", RUN+="${pkgs.coreutils}/bin/chgrp video %S%p/brightness", RUN+="${pkgs.coreutils}/bin/chmod g+w %S%p/brightness"
+    '';
+    services.udev.path = lib.mkIf config.hostSpec.isLaptop [
+      pkgs.coreutils # for chgrp
+    ];
+
+    hardware.bluetooth.enable = true;
   };
 }

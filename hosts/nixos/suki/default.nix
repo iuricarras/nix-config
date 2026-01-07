@@ -51,7 +51,8 @@ in {
       "hosts/common/optional/gaming.nix"
       "hosts/common/optional/plymouth.nix"
       "hosts/common/optional/swap.nix"
-      "hosts/common/optional/masters.nix"
+      
+      #"hosts/common/optional/masters.nix"
 
       #
       # ========== One Time Configs ==========
@@ -66,7 +67,8 @@ in {
 
   hostSpec = {
     hostName = "suki";
-    isDEPlasma = true; # enable Plasma desktop environment and various definitions on the configuration
+    isWMHyprland = true; # enable Plasma desktop environment and various definitions on the configuration
+    isLaptop = true;
   };
 
   networking = {
