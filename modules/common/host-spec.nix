@@ -62,5 +62,10 @@
       default = false;
       description = "Used to indicate a host that uses the Hyprland window manager";
     };
+    isDECosmic = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Used to indicate a host that uses the Cosmic desktop environment";
+    };
   };
 }

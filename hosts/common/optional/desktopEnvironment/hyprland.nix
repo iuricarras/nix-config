@@ -71,11 +71,24 @@ in {
       libsecret
       bluez
       mate.engrampa
+      bzip2
+      gzip
+      lrzip
+      lz4
+      lzip
+      lzop
+      p7zip
+      rar
+      gnutar
+      unzip
+      unrar
+      zip
+      zstd
     ];
 
     programs.thunar = {
       enable = true;
-      plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman ];
+      plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman];
     };
     xdg.portal = {
       enable = true;

@@ -73,7 +73,6 @@
       nil
       hugo
       findutils # find
-      firefox
       neofetch # fancier system info than pfetch
       p7zip # compression & encryption
       steam-run # for running non-NixOS-packaged binaries on Nix
@@ -88,7 +87,7 @@
       neovim
       ;
   };
-
+  
   nix = {
     package = lib.mkDefault pkgs.nix;
     settings = {
