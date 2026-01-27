@@ -73,4 +73,9 @@
   environment.systemPackages = with pkgs; [
     nur.repos.iuricarras.truckersmp-cli
   ];
+
+  services.zerotierone = {
+    enable = true;
+    joinNetworks = [ "b9a18a606f055f63" ];
+  };
 }
