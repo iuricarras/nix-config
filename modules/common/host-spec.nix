@@ -37,6 +37,11 @@
       default = false;
       description = "Used to indicate a host that uses work resources";
     };
+    isMeri = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Activates Meri's configuration";
+    };
     isLaptop = lib.mkOption {
       type = lib.types.bool;
       default = false;

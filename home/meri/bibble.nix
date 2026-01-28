@@ -5,7 +5,7 @@
     # ========== Required Configs ==========
     #
     common/core
-
+    common/optional/gaming
     #
     # ========== Host-specific Optional Configs ==========
     #

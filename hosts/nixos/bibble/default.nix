@@ -42,6 +42,7 @@ in {
       "hosts/common/optional/audio.nix"
       "hosts/common/optional/plymouth.nix"
       "hosts/common/optional/swap.nix"
+      "hosts/common/optional/gaming.nix"
 
       #
       # ========== One Time Configs ==========
@@ -57,7 +58,8 @@ in {
   hostSpec = {
     hostName = "bibble";
     username = lib.mkForce "meri";
-    #isDEPlasma = true; # enable Plasma desktop environment and various definitions on the configuration
+    isMeri = true;
+    isDEPlasma = true; # enable Plasma desktop environment and various definitions on the configuration
   };
 
   networking = {
@@ -88,6 +90,21 @@ in {
       ];
     };
   };
+
+  i18n.defaultLocale = "pt_PT.UTF-8";
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "pt_PT.UTF-8";
+    LC_IDENTIFICATION = "pt_PT.UTF-8";
+    LC_MEASUREMENT = "pt_PT.UTF-8";
+    LC_MONETARY = "pt_PT.UTF-8";
+    LC_NAME = "pt_PT.UTF-8";
+    LC_NUMERIC = "pt_PT.UTF-8";
+    LC_PAPER = "pt_PT.UTF-8";
+    LC_TELEPHONE = "pt_PT.UTF-8";
+    LC_TIME = "pt_PT.UTF-8";
+  };
+
 
   # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "25.11";

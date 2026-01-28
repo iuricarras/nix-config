@@ -1,5 +1,8 @@
-{ ... }:
-{
+{ lib , config , pkgs, ... }:
+let
+sleek-grub-theme = pkgs.sleek-grub-theme.override {withBanner="Henlo Meri!"; withStyle="orange";};
+
+in {
   boot = {
 	  supportedFilesystems = [ "ntfs" ];
 	  loader = {
@@ -11,7 +14,8 @@
         useOSProber = true;
         timeoutStyle = "menu";
         default = "saved";
-        configurationLimit =  5;
+        configurationLimit = 5;
+        theme = lib.mkIf config.hostSpec.isMeri "${sleek-grub-theme}";
       };
       timeout = 20;
     };

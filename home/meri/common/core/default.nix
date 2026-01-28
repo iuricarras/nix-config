@@ -63,13 +63,11 @@
       coreutils # basic gnu utils
       curl
       discord # chat
-      nextcloud-client # cloud sync
       tldr
       nixd
       alejandra
       wget
       nil
-      hugo
       findutils # find
       neofetch # fancier system info than pfetch
       p7zip # compression & encryption
