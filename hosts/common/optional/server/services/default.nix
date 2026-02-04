@@ -16,6 +16,7 @@
    # ./sops.nix
     ./ddclient.nix
     ./jellyfin.nix
+    ./mongodb.nix
   ];
 
   services = {

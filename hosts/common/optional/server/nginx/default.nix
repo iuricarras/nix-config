@@ -12,6 +12,7 @@
         ./arr.nix
         ./overseerr.nix
         ./homarr.nix
+        ./ssi.nix
     ];
 
 }
