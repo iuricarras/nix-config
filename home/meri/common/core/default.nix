@@ -10,8 +10,6 @@
       "modules/common/host-spec.nix"
       "modules/home"
     ])
-    ./bash.nix
-    ./bat.nix
     #./ssh.nix
   ];
 
@@ -22,13 +20,13 @@
   home = {
     username = lib.mkDefault config.hostSpec.username;
     homeDirectory = lib.mkDefault config.hostSpec.home;
-    stateVersion = lib.mkDefault "23.05";
+    stateVersion = lib.mkDefault "25.11";
     sessionPath = [
       "$HOME/.local/bin"
     ];
     sessionVariables = {
-      NH_FLAKE = "$HOME/Github/nix-config";
-      MANPAGER = "batman"; # see ./cli/bat.nix
+      NH_FLAKE = "$HOME/nix-config";
+      #MANPAGER = "batman"; # see ./cli/bat.nix
       NIXOS_OZONE_WL = "1";
     };
     preferXdgDirectories = true; # whether to make programs use XDG directories whenever supported
@@ -65,13 +63,11 @@
       coreutils # basic gnu utils
       curl
       discord # chat
-      nextcloud-client # cloud sync
       tldr
       nixd
       alejandra
       wget
       nil
-      hugo
       findutils # find
       neofetch # fancier system info than pfetch
       p7zip # compression & encryption

@@ -30,7 +30,8 @@
           },
         }
       },
-      "workbench.colorTheme": "Default Light Modern"
+      "workbench.colorTheme": "Default Light Modern",
+      "window.titleBarStyle": "native"
     }
   '';
 }

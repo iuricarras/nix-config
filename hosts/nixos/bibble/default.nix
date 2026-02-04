@@ -10,13 +10,12 @@ in {
     # ========== Hardware ==========
     #
     ./hardware-configuration.nix
-    inputs.hardware.nixosModules.common-cpu-amd
+    inputs.hardware.nixosModules.common-cpu-intel
     inputs.hardware.nixosModules.common-gpu-nvidia
     inputs.hardware.nixosModules.common-pc-laptop
     inputs.hardware.nixosModules.common-pc-ssd
 
     inputs.nurpkgs.modules.nixos.default
-
     #
     # ========== Disk Layout ==========
     #
@@ -31,8 +30,6 @@ in {
       # ========== Required Configs ==========
       #
       "hosts/common/core"
-      "hosts/common/disks/home.nix"
-      "hosts/common/disks/hdd.nix"
       #
       # ========== Non-Primary Users to Create ==========
       #
@@ -42,23 +39,15 @@ in {
       #
       "hosts/common/optional/bootloader/grub.nix"
       "hosts/common/optional/desktopEnvironment"
-      #"hosts/common/optional/virtualization/virtualbox.nix"
-      "hosts/common/optional/virtualization/libvirt.nix"
-      "hosts/common/optional/virtualization/vmware.nix"
-      "hosts/common/optional/virtualization/docker.nix"
-      #"hosts/common/optional/virtualization/waydroid.nix"
-      #"hosts/common/optional/virtualization/proxmox.nix"
       "hosts/common/optional/audio.nix"
-      "hosts/common/optional/gaming.nix"
       "hosts/common/optional/plymouth.nix"
       "hosts/common/optional/swap.nix"
-      
-      #"hosts/common/optional/masters.nix"
+      "hosts/common/optional/gaming.nix"
 
       #
       # ========== One Time Configs ==========
       #
-      #"hosts/common/optional/virtualization/docker.nix"
+
     ])
   ];
 
@@ -67,9 +56,10 @@ in {
   #
 
   hostSpec = {
-    hostName = "suki";
+    hostName = "bibble";
+    username = lib.mkForce "meri";
+    isMeri = true;
     isDEPlasma = true; # enable Plasma desktop environment and various definitions on the configuration
-    isLaptop = true;
   };
 
   networking = {
@@ -80,9 +70,7 @@ in {
     systemd.enable = true;
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_zen;
-
-  # Nvidia GPU
+  # Nvidia GPU - Editar isto
   hardware = {
     nvidia = {
       open = true;
@@ -91,7 +79,7 @@ in {
       powerManagement.finegrained = true;
 
       prime = {
-        amdgpuBusId = "PCI:0:6:0";
+        intelBusId = "PCI:0:2:0";
         nvidiaBusId = "PCI:1:0:0";
       };
     };
@@ -103,6 +91,21 @@ in {
     };
   };
 
+  i18n.defaultLocale = "pt_PT.UTF-8";
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "pt_PT.UTF-8";
+    LC_IDENTIFICATION = "pt_PT.UTF-8";
+    LC_MEASUREMENT = "pt_PT.UTF-8";
+    LC_MONETARY = "pt_PT.UTF-8";
+    LC_NAME = "pt_PT.UTF-8";
+    LC_NUMERIC = "pt_PT.UTF-8";
+    LC_PAPER = "pt_PT.UTF-8";
+    LC_TELEPHONE = "pt_PT.UTF-8";
+    LC_TIME = "pt_PT.UTF-8";
+  };
+
+
   # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.11";
 }

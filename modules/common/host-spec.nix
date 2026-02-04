@@ -37,6 +37,16 @@
       default = false;
       description = "Used to indicate a host that uses work resources";
     };
+    isMeri = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Activates Meri's configuration";
+    };
+    isLaptop = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Used to indicate a laptop host";
+    };
     isDEGnome = lib.mkOption {
       type = lib.types.bool;
       default = false;
@@ -51,6 +61,16 @@
       type = lib.types.bool;
       default = false;
       description = "Used to indicate a host that uses the Cinnamon desktop environment";
+    };
+    isWMHyprland = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Used to indicate a host that uses the Hyprland window manager";
+    };
+    isDECosmic = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Used to indicate a host that uses the Cosmic desktop environment";
     };
   };
 }

@@ -17,7 +17,7 @@ in {
       "modules/hosts/common"
       "modules/hosts/nixos"
       "hosts/common/core/nixos.nix"
-      "hosts/common/core/sops.nix"
+      #"hosts/common/core/sops.nix"
       "hosts/common/core/ssh.nix"
       #"hosts/common/core/services" #not used yet
       "hosts/common/users/primary"
@@ -61,6 +61,7 @@ in {
         ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN || true
       '';
       allowedUDPPortRanges = [{from = 27031; to = 27036;}];
+      allowedUDPPorts = [ 24642 ];
       allowedTCPPorts = [27040];
     };
   };

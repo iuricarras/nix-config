@@ -5,16 +5,11 @@
     # ========== Required Configs ==========
     #
     common/core
-
+    common/optional/gaming
     #
     # ========== Host-specific Optional Configs ==========
     #
-    common/optional/gaming
-    common/optional/tools
-    common/optional/desktopEnvironment
-
-    common/optional/gns3.nix
-    common/optional/sops.nix
+    
   ];
 
 
@@ -39,6 +34,4 @@
       #vrr = 1;
     }
   ];
-
-
 }
