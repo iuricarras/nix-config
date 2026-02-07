@@ -61,8 +61,8 @@ in {
         ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN || true
       '';
       allowedUDPPortRanges = [{from = 27031; to = 27036;}];
-      allowedUDPPorts = [ 24642 ];
-      allowedTCPPorts = [27040];
+      allowedUDPPorts = [ 24642 ]; # Stardew Valley multiplayer
+      allowedTCPPorts = [27040 25565]; # Steam and Minecraft
     };
   };
   
