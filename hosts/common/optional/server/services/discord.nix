@@ -16,6 +16,7 @@ in {
       yt-dlp
       pyradios
       python-dotenv
+      async-timeout
     ]);
   in {
     wantedBy = ["multi-user.target"];
@@ -36,7 +37,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     discordBot
-    python312
+    python313
   ];
 
   users.users."discord" = {

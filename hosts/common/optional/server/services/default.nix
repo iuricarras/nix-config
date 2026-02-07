@@ -17,6 +17,7 @@
     ./ddclient.nix
     ./jellyfin.nix
     ./mongodb.nix
+    ./syncthing.nix
   ];
 
   services = {

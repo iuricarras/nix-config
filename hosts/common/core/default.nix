@@ -17,7 +17,7 @@ in {
       "modules/hosts/common"
       "modules/hosts/nixos"
       "hosts/common/core/nixos.nix"
-      #"hosts/common/core/sops.nix"
+      "hosts/common/core/sops.nix"
       "hosts/common/core/ssh.nix"
       #"hosts/common/core/services" #not used yet
       "hosts/common/users/primary"

@@ -62,9 +62,14 @@ in {
         owner = "root";
         group = "root";
       };
+      "aether-password" = {
+        owner = "syncthing";
+        group = "syncthing";
+      };
       discord-token = {};
       homarr-api-token = {};
       cloudflare-api = {};
+      aether-password = {};
     })
   ];
   # The containing folders are created as root and if this is the first ~/.config/ entry,

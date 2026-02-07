@@ -3,16 +3,17 @@
 {
     imports =
     [
-        ./pterodactyl.nix
-        ./cockpit.nix
-        ./deluge.nix
+        ./hephaestus.nix
+        ./hades.nix
+        ./demeter.nix
         ./memoryGame.nix
         ./memoryGameAPI.nix
         ./memoryGameWS.nix
-        ./arr.nix
-        ./overseerr.nix
-        ./homarr.nix
+        ./poseidon.nix
+        ./artemis.nix
+        ./gaiaserver.nix
         ./ssi.nix
+        ./aether.nix
     ];
 
 }
