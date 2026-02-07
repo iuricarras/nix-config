@@ -9,6 +9,9 @@
         ProtocolHeader = "X-Forwarded-Proto";
       };
     };
+    plugins = [
+      pkgs.cockpit-files
+    ];
   };
   services.nginx = {
     virtualHosts."hades.gaiaserver.pt" =  {
