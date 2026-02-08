@@ -1,4 +1,9 @@
-{config, lib, pkgs, ...}:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 with lib; let
   cfg = config.desktop.plasma;
 in {
@@ -30,5 +35,14 @@ in {
       kdePackages.plasma-browser-integration
       haruna
     ];
+    
+    programs.ssh = {
+      startAgent = true;
+      enableAskPassword = true;
+    };
+
+    environment.variables = {
+      SSH_ASKPASS_REQUIRE = "prefer";
+    };
   };
 }

@@ -67,7 +67,7 @@ in
 
   hostSpec = {
     hostName = "yoggi";
-    isWMHyprland = true; # enable Hyprland window manager and various definitions on the system
+    isDEGnome = true; # enable GNOME desktop environment and various definitions on the system
   };
 
   networking = {
@@ -83,7 +83,7 @@ in
 
 
   boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
-boot.kernelModules = ["v4l2loopback"];  
+  boot.kernelModules = ["v4l2loopback"];  
 
 
   # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion

@@ -23,6 +23,7 @@
       "poseidon.gaiaserver.pt"
       "minecraft.gaiaserver.pt"
       "access.gaiaserver.pt"
+      "aether.gaiaserver.pt"
     ];
   };
 }

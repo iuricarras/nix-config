@@ -19,7 +19,7 @@ in
       isNormalUser = true;
       #hashedPasswordFile = sopsHashedPasswordFile; # Blank if sops is not working.
       # These get placed into /etc/ssh/authorized_keys.d/<name> on nixos
-      #openssh.authorizedKeys.keys = lib.lists.forEach pubKeys (key: builtins.readFile key);
+      openssh.authorizedKeys.keys = lib.lists.forEach pubKeys (key: builtins.readFile key);
 
       # Add the user to the wheel group, and any other groups that exist
       extraGroups = lib.flatten [
