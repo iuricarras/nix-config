@@ -15,7 +15,7 @@ in {
         timeoutStyle = "menu";
         default = "saved";
         configurationLimit = 5;
-        theme = lib.mkIf config.hostSpec.isMeri "${sleek-grub-theme}";
+        theme = if config.hostSpec.isMeri then "${sleek-grub-theme}" else "${pkgs.kdePackages.breeze-grub}/grub/themes/breeze";
       };
       timeout = 20;
     };
