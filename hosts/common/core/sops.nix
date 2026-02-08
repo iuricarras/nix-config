@@ -6,13 +6,13 @@
   config,
   ...
 }: let
-  sopsFolder = builtins.toString inputs.nix-secrets;
+  sopsFolder = builtins.toString inputs.nix-secrets + "/sops";
 in {
   #the import for inputs.sops-nix.nixosModules.sops is handled in hosts/common/core/default.nix so that it can be dynamically input according to the platform
 
   sops = {
     #    defaultSopsFile = "${secretsFile}";
-    defaultSopsFile = "${sopsFolder}/secret.yaml";
+    defaultSopsFile = "${sopsFolder}/${config.hostSpec.hostName}.yaml";
     validateSopsFiles = false;
     age = {
       # automatically import host SSH keys as age keys
@@ -36,17 +36,12 @@ in {
       # These age keys are are unique for the user on each host and are generated on their own (i.e. they are not derived
       # from an ssh key).
 
-      # "keys/age" = {
-      #   owner = config.users.users.${config.hostSpec.username}.name;
-      #   inherit (config.users.users.${config.hostSpec.username}) group;
-      #   # We need to ensure the entire directory structure is that of the user...
-      #   path = "${config.hostSpec.home}/.config/sops/age/keys.txt";
-      # };
-      # # extract password/username to /run/secrets-for-users/ so it can be used to create the user
-      # "passwords/${config.hostSpec.username}" = {
-      #   sopsFile = "${sopsFolder}/shared.yaml";
-      #   neededForUsers = true;
-      # };
+      "keys/age" = {
+        owner = config.users.users.${config.hostSpec.username}.name;
+        inherit (config.users.users.${config.hostSpec.username}) group;
+        # We need to ensure the entire directory structure is that of the user...
+        path = "${config.hostSpec.home}/.config/sops/age/keys.txt";
+      };
     }
     # only reference discord api and cloudflare api if host is a server
     (lib.mkIf config.hostSpec.isServer {

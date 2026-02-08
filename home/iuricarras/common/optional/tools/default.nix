@@ -3,7 +3,7 @@
   config,
   ...
 }: let
-  idea = pkgs.jetbrains.idea-ultimate.override {forceWayland = true;};
+  idea = pkgs.jetbrains.idea.override {forceWayland = true;};
 in {
   imports = [
     ./vscode.nix
@@ -27,7 +27,7 @@ in {
       ;
     inherit
       (pkgs.kdePackages)
-      kdenlive
+      #kdenlive
       ;
     inherit
       idea

@@ -34,7 +34,7 @@ in {
   networking.hostName = config.hostSpec.hostName;
 
   # System-wide packages, in case we log in as root
-  environment.systemPackages = [pkgs.openssh pkgs.vim];
+  environment.systemPackages = [pkgs.openssh pkgs.vim pkgs.sops];
 
   # Force home-manager to use global packages
   home-manager.useGlobalPkgs = true;

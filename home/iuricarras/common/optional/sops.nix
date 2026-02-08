@@ -18,9 +18,9 @@ in
     validateSopsFiles = false;
 
     secrets = {
-      #placeholder for tokens that I haven't gotten to yet
-      #"tokens/foo" = {
-      #};
+     "keys/ssh/id_${config.hostSpec.hostName}" = {
+        path = "${homeDirectory}/.ssh/id_${config.hostSpec.hostName}";
+      };
     };
   };
 }

@@ -23,6 +23,8 @@ in {
         [org.gnome.mutter]
         experimental-features=['variable-refresh-rate', 'scale-monitor-framebuffer']
       '';
+     
     };
+     security.pam.services.login.enableGnomeKeyring = true;
   };
 }

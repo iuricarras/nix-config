@@ -95,6 +95,9 @@ in {
       dconf-editor
       gnome-tweaks
       gnome-boxes
+      gcr
     ];
+
+    services.gnome-keyring.enable = true;
   };
 }

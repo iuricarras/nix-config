@@ -39,4 +39,6 @@
       "widget.gtk.libadwaita-colors.enabled" = false;
     };
   };
+
+  services.openssh.enable = true;
 }
