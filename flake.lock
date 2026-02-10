@@ -337,10 +337,10 @@
     "nix-secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1770720518,
-        "narHash": "sha256-rxtRW3U02FEd9S8p3pXKuje1wjSmiF7wWwWA+0718bM=",
+        "lastModified": 1770721583,
+        "narHash": "sha256-laNgDIlO03RG50lVTg34UxG7TF1kxAN7mfFoOUtRvMA=",
         "ref": "main",
-        "rev": "d7e74ed18daf28ae4ec128c5e6b8652149fef7ee",
+        "rev": "34f007816b7220745a3921ed69b227bf8523831b",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/iuricarras/nix_private.git"

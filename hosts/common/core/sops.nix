@@ -46,18 +46,22 @@ in {
     # only reference discord api and cloudflare api if host is a server
     (lib.mkIf config.hostSpec.isServer {
       "discord-token" = {
+        sopsFile = "${sopsFolder}/secret.yaml";
         owner = "discord";
         group = "discord";
       };
       "homarr-api-token" = {
+        sopsFile = "${sopsFolder}/secret.yaml";
         owner = "root";
         group = "root";
       };
       "cloudflare-api" = {
+        sopsFile = "${sopsFolder}/secret.yaml";
         owner = "root";
         group = "root";
       };
       "aether-password" = {
+        sopsFile = "${sopsFolder}/secret.yaml";
         owner = "syncthing";
         group = "syncthing";
       };
