@@ -3,12 +3,14 @@
   lib,
   config,
   ...
-}: {
+}: let
+  hostname = config.hostSpec.server.hostname;
+in {
   environment.etc."nextcloud-admin-pass".text = "DefaultPassword1234";
   services.nextcloud = {
     enable = true;
     package = pkgs.nextcloud32;
-    hostName = "apollo.gaiaserver.pt";
+    hostName = "apollo.${hostname}";
     https = true;
     config.adminpassFile = "/etc/nextcloud-admin-pass";
     database.createLocally = true;
@@ -31,7 +33,7 @@
   };
   services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
     forceSSL = true;
-    sslCertificate = "/var/www/certs/cert";
-    sslCertificateKey = "/var/www/certs/key";
+    sslCertificate = "${config.sops.secrets."certs/pub".path}";
+    sslCertificateKey = "${config.sops.secrets."certs/key".path}";
   };
 }

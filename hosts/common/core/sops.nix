@@ -20,7 +20,7 @@ in {
       keyFile = "/var/lib/sops-nix/key.txt";
       generateKey = true;
     };
-         
+
     # secrets will be output to /run/secrets
     # e.g. /run/secrets/msmtp-password
     # secrets required for user creation are handled in respective ./users/<username>.nix files
@@ -69,6 +69,14 @@ in {
       homarr-api-token = {};
       cloudflare-api = {};
       aether-password = {};
+      "certs/pub" = {
+        owner = "nginx";
+        group = "nginx";
+      };
+      "certs/key" = {
+        owner = "nginx";
+        group = "nginx";
+      };
     })
   ];
   # The containing folders are created as root and if this is the first ~/.config/ entry,

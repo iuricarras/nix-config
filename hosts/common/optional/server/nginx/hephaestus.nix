@@ -4,8 +4,9 @@
   config,
   ...
 }: let
+  hostname = config.hostSpec.server.hostname;
   app = "pterodactyl";
-  appDomain = "hephaestus.gaiaserver.pt";
+  appDomain = "hephaestus.${hostname}";
   dataDir = "/var/www/${app}/public";
 in {
   services.phpfpm.pools.${app} = {
@@ -37,8 +38,8 @@ in {
       ${appDomain} = {
         root = "${dataDir}";
         forceSSL = true;
-        sslCertificate = "/var/www/certs/cert";
-        sslCertificateKey = "/var/www/certs/key";
+        sslCertificate = "${config.sops.secrets."certs/pub".path}";
+        sslCertificateKey = "${config.sops.secrets."certs/key".path}";
 
         extraConfig = ''
           index index.php;

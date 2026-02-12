@@ -148,7 +148,7 @@
     # Authenticate via ssh and use shallow clone
     nix-secrets = {
       url = "git+ssh://git@github.com/iuricarras/nix_private.git?ref=main&shallow=1";
-      flake = false;
+      inputs = {};
     };
 
     #nixos-proxmox

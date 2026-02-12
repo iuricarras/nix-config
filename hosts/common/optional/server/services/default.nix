@@ -13,7 +13,7 @@
     ./discord.nix
     ./overseerr.nix
     ./homarr.nix
-   # ./sops.nix
+    # ./sops.nix
     ./ddclient.nix
     ./jellyfin.nix
     ./mongodb.nix
@@ -21,7 +21,7 @@
   ];
 
   services = {
-    logind.lidSwitch = "ignore";
+    logind.settings.Login.HandleLidSwitch = "ignore";
     mysql = {
       enable = true;
       package = pkgs.mariadb;
