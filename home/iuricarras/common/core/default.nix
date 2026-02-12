@@ -12,7 +12,7 @@
     ])
     ./bash.nix
     ./bat.nix
-    #./ssh.nix
+    ./ssh.nix
   ];
 
   inherit hostSpec;
