@@ -3,27 +3,29 @@
   lib,
   config,
   ...
-}:{
+}: let
+  hostname = config.hostSpec.server.hostname;
+in {
   services.ddclient = {
     enable = true;
     protocol = "cloudflare";
-    zone = "gaiaserver.pt";
+    zone = hostname;
     username = "iuri.carrasqueiro@gmail.com";
     passwordFile = "${config.sops.secrets."cloudflare-api".path}";
     domains = [
-      "gaiaserver.pt"
-      "apollo.gaiaserver.pt"
-      "artemis.gaiaserver.pt"
-      "dadapi.gaiaserver.pt"
-      "dad.gaiaserver.pt"
-      "dadws.gaiaserver.pt"
-      "demeter.gaiaserver.pt"
-      "hades.gaiaserver.pt"
-      "hephaestus.gaiaserver.pt"
-      "poseidon.gaiaserver.pt"
-      "minecraft.gaiaserver.pt"
-      "access.gaiaserver.pt"
-      "aether.gaiaserver.pt"
+      "${hostname}"
+      "apollo.${hostname}"
+      "artemis.${hostname}"
+      "dadapi.${hostname}"
+      "dad.${hostname}"
+      "dadws.${hostname}"
+      "demeter.${hostname}"
+      "hades.${hostname}"
+      "hephaestus.${hostname}"
+      "poseidon.${hostname}"
+      "minecraft.${hostname}"
+      "access.${hostname}"
+      "aether.${hostname}"
     ];
   };
 }

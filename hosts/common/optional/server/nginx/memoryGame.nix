@@ -1,7 +1,8 @@
 { pkgs, lib, config, ... }:
 let
+  hostname = config.hostSpec.server.hostname;
   app = "dad-vue";
-  appDomain = "dad.gaiaserver.pt";
+  appDomain = "dad.${hostname}";
   dataDir = "/var/www/${app}/dist";
 in {
 
@@ -35,8 +36,8 @@ in {
       ${appDomain} = {
         root = "${dataDir}";
         forceSSL = true;
-        sslCertificate = "/var/www/certs/cert";
-        sslCertificateKey = "/var/www/certs/key";
+        sslCertificate = "${config.sops.secrets."certs/pub".path}";
+        sslCertificateKey = "${config.sops.secrets."certs/key".path}";
         
         extraConfig = ''
             index index.html;

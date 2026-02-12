@@ -51,6 +51,9 @@ in {
     hostName = "gaiaserver";
     username = lib.mkForce "gaia";
     isServer = true;
+    inherit (inputs.nix-secrets) 
+      server
+      ;
   };
 
   networking = {

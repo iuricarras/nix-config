@@ -3,12 +3,14 @@
   lib,
   config,
   ...
-}: {
+}: let
+  hostname = config.hostSpec.server.hostname;
+in{
   services.nginx = {
-    virtualHosts."poseidon.gaiaserver.pt" = {
+    virtualHosts."poseidon.${hostname}" = {
       forceSSL = true;
-      sslCertificate = "/var/www/certs/cert";
-      sslCertificateKey = "/var/www/certs/key";
+      sslCertificate = "${config.sops.secrets."certs/pub".path}";
+      sslCertificateKey = "${config.sops.secrets."certs/key".path}";
       root = "/var/www/poseidon/public";
        extraConfig = ''
             index index.html;

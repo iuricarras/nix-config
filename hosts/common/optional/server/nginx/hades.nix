@@ -1,11 +1,14 @@
 { pkgs, lib, config, ... }:
+let
+  hostname = config.hostSpec.server.hostname;
+in
 {
   services.cockpit = {
     enable = true;
     openFirewall = true;
     settings = {
       WebService = {
-        Origins = lib.mkForce ''https://hades.gaiaserver.pt wss://hades.gaiaserver.pt'';
+        Origins = lib.mkForce ''https://hades.${hostname} wss://hades.${hostname}'';
         ProtocolHeader = "X-Forwarded-Proto";
       };
     };
@@ -14,10 +17,10 @@
     ];
   };
   services.nginx = {
-    virtualHosts."hades.gaiaserver.pt" =  {
+    virtualHosts."hades.${hostname}" =  {
       forceSSL = true;
-      sslCertificate = "/var/www/certs/cert";
-      sslCertificateKey = "/var/www/certs/key";
+      sslCertificate = "${config.sops.secrets."certs/pub".path}";
+      sslCertificateKey = "${config.sops.secrets."certs/key".path}";
       locations."/" = {
         proxyPass = "https://127.0.0.1:9090";
         proxyWebsockets = true;
