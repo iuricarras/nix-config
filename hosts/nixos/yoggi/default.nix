@@ -58,6 +58,7 @@ in
       "hosts/common/optional/swap.nix"
       "hosts/common/optional/droidcam.nix"
       "hosts/common/optional/masters.nix"
+      "hosts/common/optional/wireguard.nix"
     ])
   ];
 
@@ -68,6 +69,7 @@ in
   hostSpec = {
     hostName = "yoggi";
     isDEGnome = true; # enable GNOME desktop environment and various definitions on the system
+    wireguardUser = true; # enable WireGuard VPN client configuration
   };
 
   networking = {

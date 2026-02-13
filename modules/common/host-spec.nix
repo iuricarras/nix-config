@@ -78,6 +78,11 @@
           default = false;
           description = "Used to indicate a host that uses the Cosmic desktop environment";
         };
+        wireguardUser = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+          description = "Used to indicate a host that should have wireguard configuration applied to it. This is used to conditionally include the wireguard.nix file in the host configuration.";
+        };
       };
     };
   };

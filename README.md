@@ -8,3 +8,5 @@ WIP - Based on EmergentMind's Nix-Config, this configuration is tailor made for 
 ## TODO
 ### Server
 [] Fix Memory Game code to point to new domain
+[] Add Wireguard client configurations
+[] Add Pantheon Desktop Environment 
