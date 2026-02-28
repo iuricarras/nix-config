@@ -1,5 +1,8 @@
 {config, ...}: {
   networking.networkmanager.ensureProfiles = {
+    environmentFiles = [
+      config.sops.secrets."keys/wireguard".path
+    ];
     profiles = {
       vpn-tower = {
         connection = {
@@ -21,7 +24,7 @@
         proxy = {};
         wireguard = {
           listen-port = "51820";
-          private-key = "${config.sops.secrets."keys/wireguard".path}";
+          private-key = "$WIREGUARD";
         };
         "wireguard-peer.J8RWzc/LCDUlWbVqnhjrVjWZLUtWmzCMp50gV9VwUms=" = {
           allowed-ips = "0.0.0.0/0;";
@@ -29,15 +32,5 @@
         };
       };
     };
-
-    secrets.entries = [
-      {
-        file = "${config.sops.secrets."keys/wireguard".path}";
-        key = "private-key";
-        matchId = "vpn-tower";
-        matchSetting = "wireguard";
-        matchType = "wireguard";
-      }
-    ];
   };
 }

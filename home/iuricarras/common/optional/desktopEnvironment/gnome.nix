@@ -98,6 +98,10 @@ in {
       gcr
     ];
 
-    services.gnome-keyring.enable = true;
+    services.gnome-keyring = {
+      enable = true;
+      components = [ "pkcs11" "secrets" "ssh" ];
+    };
+    services.polkit-gnome.enable = true;
   };
 }

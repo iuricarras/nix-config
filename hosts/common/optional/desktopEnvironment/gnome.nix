@@ -23,8 +23,18 @@ in {
         [org.gnome.mutter]
         experimental-features=['variable-refresh-rate', 'scale-monitor-framebuffer']
       '';
+    };
+    security.pam.services.login.enableGnomeKeyring = true;
+    services.gnome.gnome-keyring.enable = true;
+    services.dbus.packages = [pkgs.gnome-keyring pkgs.gcr];
+
+    services.xserver = {
+      displayManager.sessionCommands = ''
+        eval $(gnome-keyring-daemon --start --daemonize --components=ssh,secrets)
+        export SSH_AUTH_SOCK
+      '';
      
     };
-     security.pam.services.login.enableGnomeKeyring = true;
+     security.pam.sshAgentAuth.enable = true;
   };
 }

@@ -339,10 +339,10 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1770982504,
-        "narHash": "sha256-paZXYZZKV9iX/XGIzCHvyo80oXjLirt2ixVktZ3SBMM=",
+        "lastModified": 1771500921,
+        "narHash": "sha256-ElqH38QV8vhKdwBsecRGZg6EP97kQP8HjwEUkPkuihw=",
         "ref": "main",
-        "rev": "408902e018fb370195acf0b7e5320d59c0d52f4a",
+        "rev": "aa7a74d6cc1b05ad5caa45d2838a4f3638d53805",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/iuricarras/nix_private.git"
