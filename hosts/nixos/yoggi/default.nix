@@ -68,7 +68,7 @@ in
 
   hostSpec = {
     hostName = "yoggi";
-    isDEGnome = true; # enable GNOME desktop environment and various definitions on the system
+    isDEPantheon = true; # enable Pantheon desktop environment and various definitions on the system
     wireguardUser = true; # enable WireGuard VPN client configuration
   };
 

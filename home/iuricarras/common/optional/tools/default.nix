@@ -20,6 +20,8 @@ in {
       obsidian
       netbeans
       deluge
+      unityhub
+      mpg123
     ;
     inherit
       (pkgs.obs-studio-plugins)
@@ -34,7 +36,7 @@ in {
       ;
     inherit
       (pkgs.nur.repos.iuricarras)
-      ciscoPacketTracer9
+      #ciscoPacketTracer9
       remixDesktop
       ;
   };
