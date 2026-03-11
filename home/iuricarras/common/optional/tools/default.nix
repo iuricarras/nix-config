@@ -22,6 +22,7 @@ in {
       deluge
       unityhub
       mpg123
+      arduino-ide
     ;
     inherit
       (pkgs.obs-studio-plugins)

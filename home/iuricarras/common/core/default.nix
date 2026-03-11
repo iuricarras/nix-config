@@ -51,8 +51,8 @@
 
       extraConfig = {
         # publicshare and templates defined as null here instead of as options because
-        XDG_PUBLICSHARE_DIR = "/var/empty";
-        XDG_TEMPLATES_DIR = "${config.home.homeDirectory}/Templates";
+        PUBLICSHARE = "/var/empty";
+        TEMPLATES = "${config.home.homeDirectory}/Templates";
       };
     };
   };
@@ -64,7 +64,7 @@
       btop # resource monitor
       coreutils # basic gnu utils
       curl
-      discord # chat
+      vesktop # chat
       nextcloud-client # cloud sync
       tldr
       nixd
@@ -85,6 +85,8 @@
       zip # zip compression
       git
       neovim
+      thunderbird
+      brave
       ;
   };
   
