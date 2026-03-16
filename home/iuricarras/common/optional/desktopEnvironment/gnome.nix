@@ -50,22 +50,24 @@ in {
     dconf.settings = {
       "org/gnome/shell" = {
         favorite-apps = [
-          "firefox.desktop"
+          "brave-browser.desktop"
           "org.gnome.Nautilus.desktop"
           "code.desktop"
           "org.gnome.Console.desktop"
-          "discord.desktop"
+          "vesktop.desktop"
           "com.usebottles.bottles.desktop"
         ];
         disable-user-extensions = false;
 
         enabled-extensions = [
           "user-theme@gnome-shell-extensions.gcampax.github.com"
-          "dash-to-dock@micxgx.gmail.com"
+          #"dash-to-dock@micxgx.gmail.com"
           "AlphabeticalAppGrid@stuarthayhurst"
           "appindicatorsupport@rgcjonas.gmail.com"
           "caffeine@patapon.info"
           "blur-my-shell@aunetx"
+          "dash-to-panel@jderose9.github.com"
+          "arcmenu@arcmenu.com"
         ];
       };
       "org/gnome/shell/extensions/user-theme" = {
@@ -86,11 +88,13 @@ in {
 
     home.packages = with pkgs; [
       gnomeExtensions.user-themes
-      gnomeExtensions.dash-to-dock
+      #gnomeExtensions.dash-to-dock
       gnomeExtensions.alphabetical-app-grid
       gnomeExtensions.appindicator
       gnomeExtensions.caffeine
       gnomeExtensions.blur-my-shell
+      gnomeExtensions.dash-to-panel
+      gnomeExtensions.arcmenu
       yaru-theme
       dconf-editor
       gnome-tweaks

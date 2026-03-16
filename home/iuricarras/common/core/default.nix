@@ -51,8 +51,8 @@
 
       extraConfig = {
         # publicshare and templates defined as null here instead of as options because
-        XDG_PUBLICSHARE_DIR = "/var/empty";
-        XDG_TEMPLATES_DIR = "${config.home.homeDirectory}/Templates";
+        PUBLICSHARE = "/var/empty";
+        TEMPLATES = "${config.home.homeDirectory}/Templates";
       };
     };
   };
@@ -73,7 +73,7 @@
       nil
       hugo
       findutils # find
-      neofetch # fancier system info than pfetch
+      fastfetch # fancier system info than pfetch
       p7zip # compression & encryption
       steam-run # for running non-NixOS-packaged binaries on Nix
       tree # cli dir tree viewer
@@ -85,6 +85,8 @@
       zip # zip compression
       git
       neovim
+      thunderbird
+      brave
       ;
   };
   
