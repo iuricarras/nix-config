@@ -68,7 +68,7 @@ in {
 
   hostSpec = {
     hostName = "suki";
-    isDEPlasma = true; # enable Plasma desktop environment and various definitions on the configuration
+    isDEPantheon = true; # enable Pantheon desktop environment and various definitions on the configuration
     isLaptop = true;
   };
 
@@ -81,6 +81,8 @@ in {
   };
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
+
+  services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
 
   # Nvidia GPU
   hardware = {

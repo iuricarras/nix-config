@@ -36,7 +36,8 @@ in
           "kvm" # for qemu
           "libvirtd" # for qemu
           "wireshark" # for wireshark
-
+          "dialout" # for arduino
+          "tty"
           #Server
           "streaming" # for arr services
         ])
