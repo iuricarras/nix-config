@@ -30,15 +30,10 @@ in {
       ;
     inherit
       (pkgs.kdePackages)
-      #kdenlive
+      kdenlive
       ;
     inherit
       idea
-      ;
-    inherit
-      (pkgs.nur.repos.iuricarras)
-      #ciscoPacketTracer9
-      remixDesktop
       ;
   };
 }

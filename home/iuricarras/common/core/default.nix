@@ -73,7 +73,7 @@
       nil
       hugo
       findutils # find
-      neofetch # fancier system info than pfetch
+      fastfetch # fancier system info than pfetch
       p7zip # compression & encryption
       steam-run # for running non-NixOS-packaged binaries on Nix
       tree # cli dir tree viewer

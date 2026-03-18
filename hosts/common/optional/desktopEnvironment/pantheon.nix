@@ -34,8 +34,8 @@ in {
         gthumb # Image Viewer
         simple-scan # Scanning
         indicator-application-gtk3 # App Indicator
-        yaru-theme
         pantheon-tweaks
+        cantarell-fonts
       ];
     };
 
