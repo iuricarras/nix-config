@@ -88,6 +88,7 @@
       neovim
       thunderbird
       brave
+      trash-cli
       ;
   };
   

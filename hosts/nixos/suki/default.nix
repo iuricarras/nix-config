@@ -68,7 +68,7 @@ in {
 
   hostSpec = {
     hostName = "suki";
-    isDEPantheon = true; # enable Pantheon desktop environment and various definitions on the configuration
+    isDEGnome = true; # enable Gnome desktop environment and various definitions on the configuration
     isLaptop = true;
   };
 
