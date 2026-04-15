@@ -40,7 +40,7 @@
         in
           xorgPkgs ++ stdenvPkgs ++ otherPkgs;
       };
-      extraCompatPackages = [pkgs.unstable.proton-ge-bin];
+      extraCompatPackages = [pkgs.proton-ge-bin];
     };
     #gamescope launch args set dynamically in home/<user>/common/optional/gaming
     gamescope = {

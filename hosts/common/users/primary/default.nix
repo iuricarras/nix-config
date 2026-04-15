@@ -16,6 +16,7 @@ in
     users.users.${hostSpec.username} = {
       name = hostSpec.username;
       home = "/home/${hostSpec.username}";
+      description = hostSpec.fullName;
       isNormalUser = true;
       #hashedPasswordFile = sopsHashedPasswordFile; # Blank if sops is not working.
       # These get placed into /etc/ssh/authorized_keys.d/<name> on nixos

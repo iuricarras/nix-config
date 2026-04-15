@@ -30,7 +30,7 @@
           },
         }
       },
-      "workbench.colorTheme": "Default Light Modern",
+      "workbench.colorTheme": "Light Modern",
       "window.titleBarStyle": "default",
       "faah.cooldown": 500
     }
