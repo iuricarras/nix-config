@@ -37,7 +37,7 @@ in {
 
         '';
       };
-
+      gtk4.theme = config.gtk.theme;
       gtk4.extraConfig = {
         Settings = ''
 
@@ -68,6 +68,7 @@ in {
           "blur-my-shell@aunetx"
           "dash-to-panel@jderose9.github.com"
           "arcmenu@arcmenu.com"
+          "rounded-window-corners@fxgn"
         ];
       };
       "org/gnome/shell/extensions/user-theme" = {
@@ -95,6 +96,7 @@ in {
       gnomeExtensions.blur-my-shell
       gnomeExtensions.dash-to-panel
       gnomeExtensions.arcmenu
+      gnomeExtensions.rounded-window-corners-reborn
       yaru-theme
       dconf-editor
       gnome-tweaks

@@ -42,6 +42,7 @@ in
       #
       "hosts/common/disks/hdd.nix"
       "hosts/common/disks/home.nix"
+      "hosts/common/disks/videos.nix"
 
       #
       # ========== Optional Configs ==========
@@ -51,7 +52,7 @@ in
       "hosts/common/optional/graphics/amd.nix"
       #"hosts/common/optional/virtualization/virtualbox.nix"
       "hosts/common/optional/virtualization/libvirt.nix"
-      #"hosts/common/optional/virtualization/vmware.nix"
+      "hosts/common/optional/virtualization/vmware.nix"
       "hosts/common/optional/audio.nix"
       "hosts/common/optional/gaming.nix"
       "hosts/common/optional/plymouth.nix"
@@ -83,11 +84,10 @@ in
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
 
-
   boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
-  boot.kernelModules = ["v4l2loopback"];  
+  boot.kernelModules = ["v4l2loopback" "ntsync"];  
 
 
   # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.11";
 }

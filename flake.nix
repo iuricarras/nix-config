@@ -49,7 +49,7 @@
     # ========= Overlays =========
     #
     # Custom modifications/overrides to upstream packages.
-    overlays = import ./overlays {inherit inputs;};
+    #overlays = import ./overlays {inherit inputs;};
 
     #
     # ========= Host Configurations =========

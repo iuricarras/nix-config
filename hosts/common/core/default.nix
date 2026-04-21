@@ -29,12 +29,13 @@ in {
   #
   hostSpec = {
     username = "iuricarras";
+    fullName = "Iuri Carrasqueiro";
   };
 
   networking.hostName = config.hostSpec.hostName;
 
   # System-wide packages, in case we log in as root
-  environment.systemPackages = [pkgs.openssh pkgs.vim pkgs.sops];
+  environment.systemPackages = [pkgs.openssh pkgs.vim pkgs.sops pkgs.nixos-test-driver];
 
   # Force home-manager to use global packages
   home-manager.useGlobalPkgs = true;
@@ -61,8 +62,8 @@ in {
         ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN || true
       '';
       allowedUDPPortRanges = [{from = 27031; to = 27036;}];
-      allowedUDPPorts = [ 24642 ]; # Stardew Valley multiplayer
-      allowedTCPPorts = [27040 25565]; # Steam and Minecraft
+      allowedUDPPorts = [ 24642 45600]; # Stardew Valley multiplayer
+      allowedTCPPorts = [27040 25565 45600] ; # Steam and Minecraft
     };
   };
   
@@ -73,9 +74,9 @@ in {
   # ========== Overlays ==========
   #
   nixpkgs = {
-    overlays = [
-      outputs.overlays.default
-    ];
+    # overlays = [
+    #   outputs.overlays.default
+    # ];
     config = {
       allowUnfree = true;
     };
