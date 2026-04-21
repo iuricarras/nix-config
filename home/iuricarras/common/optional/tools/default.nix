@@ -23,6 +23,8 @@ in {
       unityhub
       mpg123
       arduino-ide
+      autopsy
+      sleuthkit
     ;
     inherit
       (pkgs.obs-studio-plugins)
