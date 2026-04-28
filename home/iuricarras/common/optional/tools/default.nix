@@ -2,9 +2,7 @@
   pkgs,
   config,
   ...
-}: let
-  idea = pkgs.jetbrains.idea.override {forceWayland = true;};
-in {
+}: {
   imports = [
     ./vscode.nix
   ];
@@ -13,18 +11,12 @@ in {
     inherit
       (pkgs)
       obs-studio
-      #postman
       github-desktop
       vlc
       shortwave # Radio Player
       obsidian
-      netbeans
       deluge
-      unityhub
       mpg123
-      arduino-ide
-      autopsy
-      sleuthkit
     ;
     inherit
       (pkgs.obs-studio-plugins)
@@ -33,9 +25,6 @@ in {
     inherit
       (pkgs.kdePackages)
       kdenlive
-      ;
-    inherit
-      idea
       ;
   };
 }

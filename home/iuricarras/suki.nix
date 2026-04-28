@@ -15,6 +15,7 @@
 
     common/optional/gns3.nix
     common/optional/sops.nix
+    common/optional/masters.nix
   ];
 
 

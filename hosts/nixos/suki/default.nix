@@ -53,7 +53,7 @@ in {
       "hosts/common/optional/plymouth.nix"
       "hosts/common/optional/swap.nix"
       
-      #"hosts/common/optional/masters.nix"
+      "hosts/common/optional/masters.nix"
 
       #
       # ========== One Time Configs ==========
@@ -68,7 +68,7 @@ in {
 
   hostSpec = {
     hostName = "suki";
-    isDEGnome = true; # enable Gnome desktop environment and various definitions on the configuration
+    isDEPlasma = true; # enable Plasma desktop environment and various definitions on the configuration
     isLaptop = true;
   };
 
