@@ -9,14 +9,14 @@ in {
   environment.etc."nextcloud-admin-pass".text = "DefaultPassword1234";
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud32;
+    package = pkgs.nextcloud33;
     hostName = "apollo.${hostname}";
     https = true;
     config.adminpassFile = "/etc/nextcloud-admin-pass";
     database.createLocally = true;
     config.dbtype = "mysql";
     configureRedis = true;
-    maxUploadSize = "16G";
+    maxUploadSize = "25G";
     settings.enabledPreviewProviders = [
       "OC\\Preview\\BMP"
       "OC\\Preview\\GIF"
