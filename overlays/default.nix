@@ -1,10 +1,7 @@
 #
 # This file defines overlays/custom modifications to upstream packages
 #
-
-{ inputs, ... }:
-
-let
+{inputs, ...}: let
   # Adds my custom packages
   # FIXME: Add per-system packages
   # additions =
@@ -13,8 +10,7 @@ let
   #     callPackage = prev.lib.callPackageWith final;
   #     directory = ../pkgs/common;
   #   });
-
-  linuxModifications = final: prev: prev.lib.mkIf final.stdenv.isLinux { };
+  linuxModifications = final: prev: prev.lib.mkIf final.stdenv.isLinux {};
 
   modifications = final: prev: {
     # example = prev.example.overrideAttrs (oldAttrs: let ... in {
@@ -41,17 +37,13 @@ let
     unstable = import inputs.nixpkgs-unstable {
       inherit (final) system;
       config.allowUnfree = true;
-      #      overlays = [
-      #     ];
+      overlays = [
+      ];
     };
   };
-
-in
-{
-  default =
-    final: prev:
-
-    #(additions final prev)
+in {
+  default = final: prev:
+  #(additions final prev)
     (modifications final prev)
     // (linuxModifications final prev)
     // (stable-packages final prev)

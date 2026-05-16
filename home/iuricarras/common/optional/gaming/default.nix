@@ -32,20 +32,20 @@
       Icon=steam
       Type=Application
     '';
-    
-    truckersmpcli = let
-      truckersString = lib.concatStringsSep " " [
-        (lib.getExe pkgs.nur.repos.iuricarras.truckersmp-cli)
-        "-vv start ets2mp -r dx11"
-      ];
-    in
-      pkgs.writeTextDir "share/applications/truckersmp-cli.desktop" ''
-        [Desktop Entry]
-        Name=TruckersMP
-        Exec=${truckersString}
-        Icon=${./icons8-truckersmp-480.png}
-        Type=Application
-      '';
+
+  truckersmpcli = let
+    truckersString = lib.concatStringsSep " " [
+      (lib.getExe pkgs.nur.repos.iuricarras.truckersmp-cli)
+      "-vv start ets2mp -r dx11"
+    ];
+  in
+    pkgs.writeTextDir "share/applications/truckersmp-cli.desktop" ''
+      [Desktop Entry]
+      Name=TruckersMP
+      Exec=${truckersString}
+      Icon=${./icons8-truckersmp-480.png}
+      Type=Application
+    '';
 in {
   imports = [
     ./mangohud.nix
@@ -55,7 +55,22 @@ in {
       steam-session
       prismlauncher
       truckersmpcli
-      (pkgs.bottles.override {removeWarningPopup = true;})
+      (pkgs.bottles.override {
+        # Intercept buildFHSEnv to modify target packages
+        buildFHSEnv = args:
+          pkgs.buildFHSEnv (args
+            // {
+              multiPkgs = envPkgs: let
+                # Fetch original package list
+                originalPkgs = args.multiPkgs envPkgs;
+
+                # Disable tests for openldap
+                customLdap = envPkgs.openldap.overrideAttrs (_: {doCheck = false;});
+              in
+                # Replace broken openldap with the custom one
+                builtins.filter (p: (p.pname or "") != "openldap") originalPkgs ++ [customLdap];
+            });
+      })
     ]
     ++ builtins.attrValues {
       inherit
