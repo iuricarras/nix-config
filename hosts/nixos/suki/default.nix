@@ -99,8 +99,11 @@ in {
     };
     graphics = {
       enable = true;
+      enable32Bit = true;
       extraPackages = [
         pkgs.libGL
+        pkgs.vulkan-loader
+        pkgs.vulkan-validation-layers
       ];
     };
   };

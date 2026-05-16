@@ -16,7 +16,7 @@ in {
     database.createLocally = true;
     config.dbtype = "mysql";
     configureRedis = true;
-    maxUploadSize = "16G";
+    maxUploadSize = "25G";
     settings.enabledPreviewProviders = [
       "OC\\Preview\\BMP"
       "OC\\Preview\\GIF"

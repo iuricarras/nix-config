@@ -68,7 +68,7 @@ in {
         winetricks
         steamcmd
         protonup-qt
-        #lutris
+        lutris
         mangohud
         piper
         goverlay
