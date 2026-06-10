@@ -84,6 +84,7 @@ in {
 
   services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
 
+
   # Nvidia GPU
   hardware = {
     nvidia = {
