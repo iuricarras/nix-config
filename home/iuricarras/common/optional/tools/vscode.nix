@@ -19,24 +19,24 @@
   };
 
   home.file.".config/Code/User/settings.json".text = ''
-      {
-        "github.copilot.nextEditSuggestions.enabled": true,
-        "files.autoSave": "afterDelay",
-        "nix.serverPath": "nixd",
-        "nix.enableLanguageServer": true,
-        "nix.serverSettings": {
-          "nixd": {
-            "formatting": {
-              "command": [ "alejandra" ],
-            },
-          }
-        },
-        "workbench.colorTheme": "Light Modern",
-        "window.titleBarStyle": "default",
-        "faah.cooldown": 500
-        "[python]": {
-          "editor.defaultFormatter": "ms-python.black-formatter"
+    {
+      "github.copilot.nextEditSuggestions.enabled": true,
+      "files.autoSave": "afterDelay",
+      "nix.serverPath": "nixd",
+      "nix.enableLanguageServer": true,
+      "nix.serverSettings": {
+        "nixd": {
+          "formatting": {
+            "command": [ "alejandra" ],
+          },
         }
+      },
+      "workbench.colorTheme": "Dark Modern",
+      "window.titleBarStyle": "default",
+      "faah.cooldown": 500
+      "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
       }
+    }
   '';
 }

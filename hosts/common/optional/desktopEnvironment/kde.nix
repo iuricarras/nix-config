@@ -25,17 +25,19 @@ in {
         };
         defaultSession = "plasma";
       };
+      
     };
 
     hardware.bluetooth.enable = true;
 
     programs.dconf.enable = true;
+    programs.kdeconnect.enable = true;
     environment.systemPackages = with pkgs; [
       kdePackages.kalk
       kdePackages.plasma-browser-integration
       haruna
     ];
-    
+
     programs.ssh = {
       startAgent = true;
       enableAskPassword = true;

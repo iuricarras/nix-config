@@ -14,15 +14,15 @@ in {
 
   config = mkIf cfg.enable {
     home.file.".config/kate/lspclient/settings.json".text = ''
-        {
-            "servers": {
-                "nix": {
-                    "command": ["nixd"],
-                    "url": "https://github.com/nix-community/nixd",
-                    "highlightingModeRegex": "^Nix$"
-                }
-            }
-        }
+      {
+          "servers": {
+              "nix": {
+                  "command": ["nixd"],
+                  "url": "https://github.com/nix-community/nixd",
+                  "highlightingModeRegex": "^Nix$"
+              }
+          }
+      }
     '';
   };
 }
