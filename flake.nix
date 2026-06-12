@@ -23,8 +23,13 @@
     mkHost = host: {
       ${host} = let
         systemFunc = lib.nixosSystem;
+        metaFile = ./hosts/nixos/${host}/meta.nix;
+        meta = if builtins.pathExists metaFile then import metaFile else {
+          system = "x86_64-linux";
+        };
       in
         systemFunc {
+          inherit (meta) system;
           specialArgs = {
             inherit
               inputs
