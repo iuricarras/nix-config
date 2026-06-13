@@ -14,7 +14,6 @@
         ];
         capabilities = {NET_ADMIN = true;};
         volumes = [
-          "/var/docker/homarr/appdata:/appdata"
           "/home/iuricarras/.vmdisks/docker/windows:/storage"
           "/home/iuricarras:/shared"
         ];

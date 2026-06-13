@@ -92,6 +92,16 @@
           default = false;
           description = "Used to indicate a host that uses the Pantheon desktop environment";
         };
+        isAmdNvidia = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+          description = "Used to indicate a host that has both AMD and NVIDIA graphics cards";
+        };
+        isIntelNvidia = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+          description = "Used to indicate a host that has both Intel and NVIDIA graphics cards";
+        };
       };
     };
   };

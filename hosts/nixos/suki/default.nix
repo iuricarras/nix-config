@@ -42,23 +42,16 @@ in {
       #
       "hosts/common/optional/bootloader/grub.nix"
       "hosts/common/optional/desktopEnvironment"
-      #"hosts/common/optional/virtualization/virtualbox.nix"
+      "hosts/common/optional/graphics/amd.nix"
+      "hosts/common/optional/graphics/nvidia.nix"
       "hosts/common/optional/virtualization/libvirt.nix"
       "hosts/common/optional/virtualization/vmware.nix"
       "hosts/common/optional/virtualization/docker.nix"
-      #"hosts/common/optional/virtualization/waydroid.nix"
-      #"hosts/common/optional/virtualization/proxmox.nix"
       "hosts/common/optional/audio.nix"
       "hosts/common/optional/gaming.nix"
       "hosts/common/optional/plymouth.nix"
       "hosts/common/optional/swap.nix"
-      
-      "hosts/common/optional/masters.nix"
-
-      #
-      # ========== One Time Configs ==========
-      #
-      #"hosts/common/optional/virtualization/docker.nix"
+      "hosts/common/optional/kernel.nix"
     ])
   ];
 
@@ -70,6 +63,7 @@ in {
     hostName = "suki";
     isDEPlasma = true; # enable Plasma desktop environment and various definitions on the configuration
     isLaptop = true;
+    isAmdNvidia = true; # enable AMD/NVIDIA hybrid graphics configuration
   };
 
   networking = {
@@ -78,35 +72,6 @@ in {
 
   boot.initrd = {
     systemd.enable = true;
-  };
-
-  boot.kernelPackages = pkgs.linuxPackages_zen;
-
-  services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
-
-
-  # Nvidia GPU
-  hardware = {
-    nvidia = {
-      open = true;
-      modesetting.enable = lib.mkDefault true;
-      powerManagement.enable = lib.mkDefault true;
-      powerManagement.finegrained = true;
-
-      prime = {
-        amdgpuBusId = "PCI:0:6:0";
-        nvidiaBusId = "PCI:1:0:0";
-      };
-    };
-    graphics = {
-      enable = true;
-      enable32Bit = true;
-      extraPackages = [
-        pkgs.libGL
-        pkgs.vulkan-loader
-        pkgs.vulkan-validation-layers
-      ];
-    };
   };
 
   # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
