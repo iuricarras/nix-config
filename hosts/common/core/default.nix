@@ -63,7 +63,7 @@ in {
       '';
       allowedUDPPortRanges = [{from = 27031; to = 27036;}];
       allowedUDPPorts = [ 24642 45600]; # Stardew Valley multiplayer
-      allowedTCPPorts = [27040 25565 45600] ; # Steam and Minecraft
+      allowedTCPPorts = [27040 25565 45600 5000] ; # Steam and Minecraft
     };
   };
   

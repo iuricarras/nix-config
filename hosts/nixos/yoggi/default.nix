@@ -57,8 +57,7 @@ in
       "hosts/common/optional/gaming.nix"
       "hosts/common/optional/plymouth.nix"
       "hosts/common/optional/swap.nix"
-      "hosts/common/optional/droidcam.nix"
-      "hosts/common/optional/masters.nix"
+      "hosts/common/optional/kernel.nix"
       #"hosts/common/optional/wireguard.nix"
     ])
   ];
@@ -69,7 +68,7 @@ in
 
   hostSpec = {
     hostName = "yoggi";
-    isDEGnome = true; # enable Gnome desktop environment and various definitions on the system
+    isDEPlasma = true; # enable Plasma desktop environment and various definitions on the system
     #wireguardUser = true; # enable WireGuard VPN client configuration
   };
 
@@ -81,12 +80,6 @@ in
   boot.initrd = {
     systemd.enable = true;
   };
-
-  boot.kernelPackages = pkgs.linuxPackages_zen;
-
-  boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
-  boot.kernelModules = ["v4l2loopback" "ntsync"];  
-
 
   # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "25.11";

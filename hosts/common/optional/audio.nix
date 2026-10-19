@@ -1,4 +1,7 @@
 {...}: {
+  #
+  # Audio configuration for desktop environments. This is not required for headless servers, but it is required for desktops and laptops.
+  #
   security.rtkit.enable = true;
   services.pulseaudio.enable = false;
   services.pipewire = {

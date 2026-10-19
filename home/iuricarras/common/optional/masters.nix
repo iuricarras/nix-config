@@ -11,6 +11,8 @@ in {
       arduino-ide
       autopsy
       sleuthkit
+      rpi-imager
+      remmina
       ;
     inherit
       (pkgs.kdePackages)

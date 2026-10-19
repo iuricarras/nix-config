@@ -14,6 +14,13 @@
         identitiesOnly = true;
         identityFile = "${config.home.homeDirectory}/.ssh/id_${config.hostSpec.hostName}";
       };
+      "tinygaia" = {
+        host = "tinygaia";
+        hostname = "192.168.14.150";
+        user = "gaia";
+        identitiesOnly = true;
+        identityFile = "${config.home.homeDirectory}/.ssh/id_${config.hostSpec.hostName}";
+      };
     };
   };
 }

@@ -6,6 +6,7 @@
       mkhl.direnv
       ms-vscode.cpptools-extension-pack
       ms-python.python
+      ms-python.black-formatter
     ];
   };
 
@@ -30,9 +31,12 @@
           },
         }
       },
-      "workbench.colorTheme": "Light Modern",
+      "workbench.colorTheme": "Dark Modern",
       "window.titleBarStyle": "default",
       "faah.cooldown": 500
+      "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+      }
     }
   '';
 }

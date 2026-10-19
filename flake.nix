@@ -13,6 +13,7 @@
     #
     forAllSystems = nixpkgs.lib.genAttrs [
       "x86_64-linux"
+      "aarch64-linux"
     ];
 
     #
@@ -22,8 +23,13 @@
     mkHost = host: {
       ${host} = let
         systemFunc = lib.nixosSystem;
+        metaFile = ./hosts/nixos/${host}/meta.nix;
+        meta = if builtins.pathExists metaFile then import metaFile else {
+          system = "x86_64-linux";
+        };
       in
         systemFunc {
+          inherit (meta) system;
           specialArgs = {
             inherit
               inputs
@@ -49,7 +55,7 @@
     # ========= Overlays =========
     #
     # Custom modifications/overrides to upstream packages.
-    #overlays = import ./overlays {inherit inputs;};
+    overlays = import ./overlays {inherit inputs;};
 
     #
     # ========= Host Configurations =========
