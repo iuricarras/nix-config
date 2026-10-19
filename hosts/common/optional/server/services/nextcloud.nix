@@ -9,7 +9,7 @@ in {
   environment.etc."nextcloud-admin-pass".text = "DefaultPassword1234";
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud33;
+    package = pkgs.nextcloud35;
     hostName = "apollo.${hostname}";
     https = true;
     config.adminpassFile = "/etc/nextcloud-admin-pass";

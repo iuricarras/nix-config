@@ -26,6 +26,7 @@ in {
       "minecraft.${hostname}"
       "access.${hostname}"
       "aether.${hostname}"
+      "minerva.${hostname}"
     ];
   };
 }

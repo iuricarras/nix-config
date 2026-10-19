@@ -11,8 +11,10 @@
         ./poseidon.nix
         ./artemis.nix
         ./gaiaserver.nix
-        ./ssi.nix 
-        ./aether.nix 
+        #./ssi.nix 
+        ./aether.nix
+        #./iot.nix
+        ./minerva.nix
     ];
 
 }

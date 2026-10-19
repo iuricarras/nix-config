@@ -1,11 +1,14 @@
-{ pkgs, lib, config, ... }:
-let
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   hostname = config.hostSpec.server.hostname;
   app = "dad-vue";
   appDomain = "dad.${hostname}";
   dataDir = "/var/www/${app}/dist";
 in {
-
   services.phpfpm.pools.${app} = {
     user = app;
     settings = {
@@ -22,25 +25,29 @@ in {
     };
   };
 
-  users.groups.${app}.members = [ "${app}" ];
+  users.groups.${app}.members = ["${app}"];
   users.users.${app} = {
     isSystemUser = true;
     group = "${app}";
   };
-  users.users.nginx.extraGroups = [ "${app}" ];
-
+  users.users.nginx.extraGroups = ["${app}"];
 
   services.nginx = {
     enable = true;
+    recommendedGzipSettings = true;
+    recommendedOptimisation = true;
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
+
     virtualHosts = {
       ${appDomain} = {
         root = "${dataDir}";
         forceSSL = true;
         sslCertificate = "${config.sops.secrets."certs/pub".path}";
         sslCertificateKey = "${config.sops.secrets."certs/key".path}";
-        
+
         extraConfig = ''
-            index index.html;
+          index index.html;
         '';
 
         locations."/" = {
@@ -49,9 +56,8 @@ in {
             # as directory, then fall back to displaying a 404.
             try_files $uri $uri/ /index.html;
           '';
-	      };
+        };
       };
     };
   };
 }
-

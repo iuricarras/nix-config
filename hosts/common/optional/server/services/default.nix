@@ -18,6 +18,8 @@
     ./jellyfin.nix
     ./mongodb.nix
     ./syncthing.nix
+    ./maintainer.nix
+    ./authelia.nix
   ];
 
   services = {
