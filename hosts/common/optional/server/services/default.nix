@@ -20,6 +20,8 @@
     ./syncthing.nix
     ./maintainer.nix
     ./authelia.nix
+    ./pyload-ng.nix
+    ./containers-update.nix
   ];
 
   services = {

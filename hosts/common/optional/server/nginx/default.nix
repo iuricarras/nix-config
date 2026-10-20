@@ -15,6 +15,7 @@
         ./aether.nix
         #./iot.nix
         ./minerva.nix
+        ./eleuthia.nix
     ];
 
 }

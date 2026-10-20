@@ -27,6 +27,7 @@ in {
       "access.${hostname}"
       "aether.${hostname}"
       "minerva.${hostname}"
+      "eleuthia.${hostname}"
     ];
   };
 }
